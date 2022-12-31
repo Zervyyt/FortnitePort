@@ -222,5 +222,7 @@ public partial class MainViewModel : ObservableObject
             APIVersion = new Version(4, 6),
             Title = "Model Viewer"
         });
+        
+        ModelViewer.Run();
     }
 }

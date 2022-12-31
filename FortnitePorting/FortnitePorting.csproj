@@ -21,6 +21,7 @@
       <PackageReference Include="RestSharp" Version="108.0.3-alpha.0.5" />
       <PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="108.0.3-alpha.0.5" />
       <PackageReference Include="Serilog.Sinks.File" Version="5.0.1-dev-00947" />
+      <PackageReference Include="StbImageSharp" Version="2.27.13" />
       <PackageReference Include="VirtualizingWrapPanel" Version="1.5.7" />
     </ItemGroup>
 
@@ -51,8 +52,10 @@
       <Resource Include="Resources\Clipboard.png" />
       <Resource Include="FortnitePorting-Dark.ico" />
       <Resource Include="FortnitePorting.ico" />
-      <None Remove="Resources\MeshPreview.png" />
       <Resource Include="Resources\MeshPreview.png" />
+      <Resource Include="Resources\Shaders\shader.frag" />
+      <Resource Include="Resources\Shaders\shader.vert" />
+      <Resource Include="Resources\gany.jpg" />
     </ItemGroup>
 
 </Project>

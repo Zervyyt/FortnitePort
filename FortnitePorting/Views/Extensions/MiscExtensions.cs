@@ -63,4 +63,9 @@ public static class MiscExtensions
         var index = RandomGen.Next(0, list.Count);
         return list[index];
     }
+    
+    public static string AsString(this byte[] bytes)
+    {
+        return Encoding.UTF8.GetString(bytes);
+    }
 }

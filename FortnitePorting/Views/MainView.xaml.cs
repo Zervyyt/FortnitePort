@@ -30,6 +30,7 @@ public partial class MainView
         Title = $"Fortnite Porting - v{Globals.VERSION}";
         Icon = new BitmapImage(new Uri(AppSettings.Current.LightMode ? "pack://application:,,,/FortnitePorting-Dark.ico" : "pack://application:,,,/FortnitePorting.ico", UriKind.RelativeOrAbsolute));
         YesWeDogs = this;
+        
     }
 
     private async void OnLoaded(object sender, RoutedEventArgs e)
@@ -52,6 +53,8 @@ public partial class MainView
             AppSettings.Current.JustUpdated = false;
         }
 
+        
+        await AppVM.MainVM.PreviewModel();
         await AppVM.MainVM.Initialize();
     }
 

@@ -9,6 +9,7 @@ using CUE4Parse.UE4.Assets;
 using FortnitePorting.AppUtils;
 using FortnitePorting.Exports.Types;
 using FortnitePorting.Services;
+using StbImageSharp;
 using MessageBox = AdonisUI.Controls.MessageBox;
 using MessageBoxImage = AdonisUI.Controls.MessageBoxImage;
 
@@ -63,6 +64,8 @@ public partial class App
         {
             DiscordService.Initialize();
         }
+        
+        StbImage.stbi_set_flip_vertically_on_load(1);
     }
 
     protected override void OnExit(ExitEventArgs e)
