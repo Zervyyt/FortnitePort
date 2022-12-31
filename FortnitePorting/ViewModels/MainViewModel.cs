@@ -13,8 +13,12 @@ using FortnitePorting.AppUtils;
 using FortnitePorting.Bundles;
 using FortnitePorting.Exports.Types;
 using FortnitePorting.Services;
+using FortnitePorting.Viewer;
 using FortnitePorting.Views;
 using FortnitePorting.Views.Controls;
+using OpenTK.Mathematics;
+using OpenTK.Windowing.Common;
+using OpenTK.Windowing.Desktop;
 using StyleSelector = FortnitePorting.Views.Controls.StyleSelector;
 
 namespace FortnitePorting.ViewModels;
@@ -201,5 +205,22 @@ public partial class MainViewModel : ObservableObject
     public async Task Favorite()
     {
         CurrentAsset?.ToggleFavorite();
+    }
+
+    [ObservableProperty]
+    public ModelViewer? modelViewer;
+
+    [RelayCommand]
+    public async Task PreviewModel()
+    {
+        ModelViewer ??= new ModelViewer(GameWindowSettings.Default, new NativeWindowSettings
+        {
+            Size = new Vector2i(960, 540),
+            NumberOfSamples = 4,
+            WindowBorder = WindowBorder.Fixed,
+            Profile = ContextProfile.Core,
+            APIVersion = new Version(4, 6),
+            Title = "Model Viewer"
+        });
     }
 }

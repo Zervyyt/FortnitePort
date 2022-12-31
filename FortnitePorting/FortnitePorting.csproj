@@ -17,6 +17,7 @@
       <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
       <PackageReference Include="MercuryCommons" Version="0.0.8" />
       <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
+      <PackageReference Include="OpenTK" Version="4.7.5" />
       <PackageReference Include="RestSharp" Version="108.0.3-alpha.0.5" />
       <PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="108.0.3-alpha.0.5" />
       <PackageReference Include="Serilog.Sinks.File" Version="5.0.1-dev-00947" />
@@ -50,10 +51,8 @@
       <Resource Include="Resources\Clipboard.png" />
       <Resource Include="FortnitePorting-Dark.ico" />
       <Resource Include="FortnitePorting.ico" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Include="Resources\invert.fx" />
+      <None Remove="Resources\MeshPreview.png" />
+      <Resource Include="Resources\MeshPreview.png" />
     </ItemGroup>
 
 </Project>

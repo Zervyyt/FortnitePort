@@ -215,11 +215,13 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="5*"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.375*"/>
                         <RowDefinition Height="{adonisUi:Space 1}"/>
-                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.375*"/>
                         <RowDefinition Height="{adonisUi:Space 1}"/>
-                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.375*"/>
+                        <RowDefinition Height="{adonisUi:Space 1}"/>
+                        <RowDefinition Height="0.375*"/>
                     </Grid.RowDefinitions>
                     
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
@@ -271,6 +273,14 @@
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/FortnitePorting;component/Resources/Settings.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality"/>
                                 <TextBlock Text="Options" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button Grid.Row="10" Command="{Binding PreviewModelCommand}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/FortnitePorting;component/Resources/MeshPreview.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <TextBlock Text="Preview Model" VerticalAlignment="Center" Margin="5 0 0 0"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>
