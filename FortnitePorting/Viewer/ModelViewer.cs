@@ -2,9 +2,14 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows;
+using CUE4Parse_Conversion.Meshes;
+using CUE4Parse.UE4.Assets.Exports;
+using CUE4Parse.UE4.Assets.Exports.SkeletalMesh;
+using CUE4Parse.Utils;
 using FortnitePorting.Viewer.Models;
 using FortnitePorting.Viewer.Shaders;
-using OpenTK.Graphics.OpenGL4;
+using FortnitePorting.Views.Controls;
+using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Common.Input;
@@ -17,14 +22,33 @@ namespace FortnitePorting.Viewer;
 
 public class ModelViewer : GameWindow
 {
-
-    private Cube Cube;
-    private Cube Cube2;
-    private Cube Cube3;
+    public Renderer Renderer;
+    public Camera Camera;
     
     public ModelViewer(GameWindowSettings gameSettings, NativeWindowSettings nativeSettings) : base(gameSettings, nativeSettings)
     {
+        Renderer = new Renderer();
+        Camera = new Camera();
         
+        Renderer.AddStatic(new Skybox());
+    }
+
+    public void LoadAsset(AssetSelectorItem item)
+    {
+        Title = $"Model Preview - {item.DisplayName}";
+        Renderer.Clear();
+
+        var parts = item.Asset.GetOrDefault("BaseCharacterParts", Array.Empty<UObject>());
+        if (parts.Length == 0) parts = item.Asset.GetOrDefault("CharacterParts", Array.Empty<UObject>());
+
+        foreach (var part in parts)
+        {
+            var skeletalMesh = part.Get<USkeletalMesh>("SkeletalMesh");
+            if (skeletalMesh.TryConvert(out var convertedMesh))
+            {
+                Renderer.Add(new UnrealModel(convertedMesh));
+            }
+        }
     }
 
     protected override void OnLoad()
@@ -35,12 +59,8 @@ public class ModelViewer : GameWindow
         LoadIcon();
 
         GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        
         GL.Enable(EnableCap.DepthTest);
-
-        Cube = new Cube();
-        Cube2 = new Cube();
-        Cube3 = new Cube();
+        SetVisibility(true);
     }
 
     private void LoadIcon()
@@ -50,41 +70,70 @@ public class ModelViewer : GameWindow
         Icon = new WindowIcon(new Image(bitmap.Width, bitmap.Height, bitmap.Bytes));
     }
 
-    private double Time;
+    protected override void OnMouseWheel(MouseWheelEventArgs e)
+    {
+        base.OnMouseWheel(e);
+        Camera.Speed += e.OffsetY;
+        Camera.Speed = Camera.Speed.Clamp(0.5f, 10);
+    }
+
+    protected override void OnMouseMove(MouseMoveEventArgs e)
+    {
+        base.OnMouseMove(e);
+
+        var delta = e.Delta * Camera.Sensitivity;
+        if (MouseState[MouseButton.Right])
+        {
+            Camera.CalculateDirection(delta.X, delta.Y);
+            Cursor = MouseCursor.Empty;
+            CursorState = CursorState.Grabbed;
+        }
+        else
+        {
+            Cursor = MouseCursor.Default;
+            CursorState = CursorState.Normal;
+        }
+    }
+
+    protected override void OnUpdateFrame(FrameEventArgs args)
+    {
+        base.OnUpdateFrame(args);
+
+        var speed = (float) args.Time * Camera.Speed;
+        if (KeyboardState.IsKeyDown(Keys.W))
+            Camera.Position += Camera.Direction * speed;
+        if (KeyboardState.IsKeyDown(Keys.S))
+            Camera.Position -= Camera.Direction * speed;
+        if (KeyboardState.IsKeyDown(Keys.A))
+            Camera.Position -= Vector3.Normalize(Vector3.Cross(Camera.Direction, Camera.Up)) * speed;
+        if (KeyboardState.IsKeyDown(Keys.D))
+            Camera.Position += Vector3.Normalize(Vector3.Cross(Camera.Direction, Camera.Up)) * speed;
+        if (KeyboardState.IsKeyDown(Keys.E))
+            Camera.Position += Camera.Up * speed;
+        if (KeyboardState.IsKeyDown(Keys.Q))
+            Camera.Position -= Camera.Up * speed;
+    }
 
     protected override void OnRenderFrame(FrameEventArgs args)
     {
         base.OnRenderFrame(args);
-        Time += args.Time;
         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-
-        {
-            var location = Matrix4.CreateTranslation(0, 0, 0);
-            var rotation = Matrix4.CreateRotationY((float)Time);
-            var scale = Matrix4.CreateScale(MathF.Abs(MathF.Sin((float)Time)));
-            Cube.Render(rotation * location * scale);
-        }
         
-        {
-            var location = Matrix4.CreateTranslation(2,0,-2);
-            var rotation = Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(15))*Matrix4.CreateRotationY((float)Time*5)*Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(-25));
-            Cube2.Render(rotation*location);
-        }
-        
-        {
-            var location = Matrix4.CreateTranslation(-1.75f,0.5f,-1.5f);
-            var rotation = Matrix4.CreateRotationY((float)Time*2)*Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(25));
-            Cube3.Render(rotation*location);
-        }
+        Renderer.Render(Camera);
 
         SwapBuffers();
     }
 
-    protected override unsafe void OnClosing(CancelEventArgs e)
+    protected override void OnClosing(CancelEventArgs e)
     {
         base.OnClosing(e);
         
-        GLFW.SetWindowShouldClose(WindowPtr, true);
-        IsVisible = false;
+        SetVisibility(false);
+    }
+    
+    private unsafe void SetVisibility(bool open)
+    {
+        GLFW.SetWindowShouldClose(WindowPtr, !open);
+        IsVisible = open; 
     }
 }

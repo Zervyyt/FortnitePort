@@ -12,6 +12,7 @@
     <ItemGroup>
       <PackageReference Include="AdonisUI" Version="1.17.1" />
       <PackageReference Include="AdonisUI.ClassicTheme" Version="1.17.1" />
+      <PackageReference Include="AssimpNet" Version="5.0.0-beta1" />
       <PackageReference Include="Autoupdater.NET.Official" Version="1.7.6" />
       <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
       <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
@@ -39,6 +40,8 @@
       <Resource Include="Resources\Outfit.png" />
       <Resource Include="Resources\Pickaxe.png" />
       <Resource Include="Resources\Props.png" />
+      <Resource Include="Resources\Shaders\skybox.frag" />
+      <Resource Include="Resources\Shaders\skybox.vert" />
       <Resource Include="Resources\Vehicle.png" />
       <Resource Include="Resources\Weapon.png" />
       <Resource Include="Resources\Unreal.png" />
@@ -56,6 +59,12 @@
       <Resource Include="Resources\Shaders\shader.frag" />
       <Resource Include="Resources\Shaders\shader.vert" />
       <Resource Include="Resources\gany.jpg" />
+      <Resource Include="Resources\Shaders\nx.png" />
+      <Resource Include="Resources\Shaders\ny.png" />
+      <Resource Include="Resources\Shaders\nz.png" />
+      <Resource Include="Resources\Shaders\px.png" />
+      <Resource Include="Resources\Shaders\py.png" />
+      <Resource Include="Resources\Shaders\pz.png" />
     </ItemGroup>
 
 </Project>

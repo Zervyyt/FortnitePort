@@ -53,8 +53,6 @@ public partial class MainView
             AppSettings.Current.JustUpdated = false;
         }
 
-        
-        await AppVM.MainVM.PreviewModel();
         await AppVM.MainVM.Initialize();
     }
 

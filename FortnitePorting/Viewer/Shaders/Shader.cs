@@ -3,7 +3,7 @@ using System.Text;
 using System.Windows;
 using FortnitePorting.Views.Extensions;
 using MercuryCommons.Utilities.Extensions;
-using OpenTK.Graphics.OpenGL4;
+using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
 using SkiaSharp;
 
@@ -42,9 +42,14 @@ public class Shader : IDisposable
         return GL.GetUniformLocation(Handle, name);
     }
     
-    public unsafe void SetMatrix4(string name, Matrix4 value)
+    public void SetMatrix4(string name, Matrix4 value)
     {
         GL.UniformMatrix4(GetUniformLocation(name), true, ref value);
+    }
+    
+    public void SetUniform(string name, int value)
+    {
+        GL.Uniform1(GetUniformLocation(name), value);
     }
 
 

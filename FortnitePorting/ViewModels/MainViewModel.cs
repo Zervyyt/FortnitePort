@@ -223,6 +223,7 @@ public partial class MainViewModel : ObservableObject
             Title = "Model Viewer"
         });
         
+        if (CurrentAsset is not null) ModelViewer.LoadAsset(CurrentAsset);
         ModelViewer.Run();
     }
 }
