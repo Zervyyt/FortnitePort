@@ -671,9 +671,10 @@ public static class ExportHelpers
 
                 Log.Information("Exporting {ExportType}: {FileName}{Extra}", obj.ExportType, obj.Name, (extraString == string.Empty ? string.Empty : ", " + extraString));
             }
-            catch (IOException)
+            catch (IOException e)
             {
                 Log.Error("Failed to export {ExportType}: {FileName}", obj.ExportType, obj.Name);
+                Log.Error(e.Message);
             }
         }));
     }

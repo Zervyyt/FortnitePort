@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -22,9 +23,12 @@ public partial class PluginUpdateView
 
         void AddInstallation(DirectoryInfo directory, string prefix = "")
         {
-            if (!double.TryParse(directory.Name, out var numberVersion)) return;
-            var addonsPath = Path.Combine(directory.FullName, "scripts", "addons");
-            if (!Directory.Exists(addonsPath)) return;
+            if (!double.TryParse(directory.Name, NumberStyles.Any, new CultureInfo("en-US"), out var numberVersion))
+            {
+                Log.Warning("{0} is not a valid blender folder", directory.FullName);
+                return;
+            }
+            
             Log.Information("Found Blender installation at {0}.", directory.FullName);
             var isSupported = numberVersion >= 3.0;
             var extraText = isSupported ? string.Empty : "(Unsupported)";

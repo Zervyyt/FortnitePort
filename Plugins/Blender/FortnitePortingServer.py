@@ -416,7 +416,7 @@ def import_material(target_slot: bpy.types.MaterialSlot, material_data):
 
     links.new(shader_node.outputs[0], output_node.inputs[0])
     
-    if material_name == "M_VertexCrunch":
+    if material_name in ["DEMO_Master", "M_VertexCrunch"]:
         shader_node.inputs["Alpha"].default_value = 0.0
         target_material.blend_method = "CLIP"
         target_material.shadow_method = "CLIP"
@@ -815,35 +815,50 @@ def apply_tasty_rig(master_skeleton: bpy.types.Armature):
     bpy.ops.object.mode_set(mode='EDIT')
     edit_bones = master_skeleton.data.edit_bones
 
+    root_bone = edit_bones.get("root")
     ik_root_bone = edit_bones.new("tasty_root")
-    ik_root_bone.parent = edit_bones.get("root")
+    ik_root_bone.parent = root_bone
+    ik_root_bone.head = root_bone.head
+    ik_root_bone.tail = root_bone.tail
+
+    # new name, parent bone name
+    # duplicate transform info for rig bones
+    complete_copy_bones = [
+        ('hand_ik_r', 'hand_r'),
+        ('hand_ik_l', 'hand_l'),
+        ('foot_ik_r', 'foot_r'),
+        ('foot_ik_l', 'foot_l'),
+
+        ('index_control_l', 'index_01_l'),
+        ('middle_control_l', 'middle_01_l'),
+        ('ring_control_l', 'ring_01_l'),
+        ('pinky_control_l', 'pinky_01_l'),
+
+        ('index_control_r', 'index_01_r'),
+        ('middle_control_r', 'middle_01_r'),
+        ('ring_control_r', 'ring_01_r'),
+        ('pinky_control_r', 'pinky_01_r')
+    ]
+
+    for new_bone in complete_copy_bones:
+        new_name, old_name = new_bone
+        if not (parent_bone := edit_bones.get(old_name)):
+            continue
+            
+        edit_bone: bpy.types.EditBone = edit_bones.new(new_name)
+        edit_bone.head = parent_bone.head
+        edit_bone.tail = parent_bone.tail
+        edit_bone.roll = parent_bone.roll
+        edit_bone.parent = ik_root_bone
 
     # name, head, tail, roll
     # don't rely on other rig bones for creation
     independent_rig_bones = [
-        ('hand_ik_r', edit_bones.get('hand_r').head, edit_bones.get('hand_r').tail, edit_bones.get('hand_r').roll),
-        ('hand_ik_l', edit_bones.get('hand_l').head, edit_bones.get('hand_l').tail, edit_bones.get('hand_l').roll),
-
-        ('foot_ik_r', edit_bones.get('foot_r').head, edit_bones.get('foot_r').tail, edit_bones.get('foot_r').roll),
-        ('foot_ik_l', edit_bones.get('foot_l').head, edit_bones.get('foot_l').tail, edit_bones.get('foot_l').roll),
-
         ('pole_elbow_r', edit_bones.get('lowerarm_r').head + Vector((0, 0.5, 0))*scale, edit_bones.get('lowerarm_r').head + Vector((0, 0.5, -0.05))*scale, 0),
         ('pole_elbow_l', edit_bones.get('lowerarm_l').head + Vector((0, 0.5, 0))*scale, edit_bones.get('lowerarm_l').head + Vector((0, 0.5, -0.05))*scale, 0),
 
         ('pole_knee_r', edit_bones.get('calf_r').head + Vector((0, -0.75, 0))*scale, edit_bones.get('calf_r').head + Vector((0, -0.75, -0.05))*scale, 0),
         ('pole_knee_l', edit_bones.get('calf_l').head + Vector((0, -0.75, 0))*scale, edit_bones.get('calf_l').head + Vector((0, -0.75, -0.05))*scale, 0),
-
-        ('index_control_l', edit_bones.get('index_01_l').head, edit_bones.get('index_01_l').tail, edit_bones.get('index_01_l').roll),
-        ('middle_control_l', edit_bones.get('middle_01_l').head, edit_bones.get('middle_01_l').tail, edit_bones.get('middle_01_l').roll),
-        ('ring_control_l', edit_bones.get('ring_01_l').head, edit_bones.get('ring_01_l').tail, edit_bones.get('ring_01_l').roll),
-        ('pinky_control_l', edit_bones.get('pinky_01_l').head, edit_bones.get('pinky_01_l').tail, edit_bones.get('pinky_01_l').roll),
-
-        ('index_control_r', edit_bones.get('index_01_r').head, edit_bones.get('index_01_r').tail, edit_bones.get('index_01_r').roll),
-        ('middle_control_r', edit_bones.get('middle_01_r').head, edit_bones.get('middle_01_r').tail, edit_bones.get('middle_01_r').roll),
-        ('ring_control_r', edit_bones.get('ring_01_r').head, edit_bones.get('ring_01_r').tail, edit_bones.get('ring_01_r').roll),
-        ('pinky_control_r', edit_bones.get('pinky_01_r').head, edit_bones.get('pinky_01_r').tail, edit_bones.get('pinky_01_r').roll),
-
-        ('eye_control_mid', edit_bones.get('head').head + Vector((0, -0.675, 0))*scale, edit_bones.get('head').head + Vector((0, -0.7, 0))*scale, 0),
     ]
 
     for new_bone in independent_rig_bones:
@@ -852,20 +867,26 @@ def apply_tasty_rig(master_skeleton: bpy.types.Armature):
         edit_bone.tail = new_bone[2]
         edit_bone.roll = new_bone[3]
         edit_bone.parent = ik_root_bone
+        
+    if head_bone := edit_bones.get('head'):
+        eye_control_mid: bpy.types.EditBone = edit_bones.new("eye_control_mid")
+        eye_control_mid.head = head_bone.head + Vector((0, -0.675, 0))*scale
+        eye_control_mid.tail = head_bone.head + Vector((0, -0.7, 0))*scale
+        eye_control_mid.parent = ik_root_bone
 
-    # name, head, tail, roll, parent
-    # DO rely on other rig bones for creation
-    dependent_rig_bones = [
-        ('eye_control_r', edit_bones.get('eye_control_mid').head + Vector((0.0325, 0, 0))*scale, edit_bones.get('eye_control_mid').tail + Vector((0.0325, 0, 0))*scale, 0, "eye_control_mid"),
-        ('eye_control_l', edit_bones.get('eye_control_mid').head + Vector((-0.0325, 0, 0))*scale, edit_bones.get('eye_control_mid').tail + Vector((-0.0325, 0, 0))*scale, 0, "eye_control_mid")
-    ]
-
-    for new_bone in dependent_rig_bones:
-        edit_bone: bpy.types.EditBone = edit_bones.new(new_bone[0])
-        edit_bone.head = new_bone[1]
-        edit_bone.tail = new_bone[2]
-        edit_bone.roll = new_bone[3]
-        edit_bone.parent = edit_bones.get(new_bone[4])
+        # name, head, tail, roll, parent
+        # DO rely on other rig bones for creation
+        dependent_rig_bones = [
+            ('eye_control_r', edit_bones.get('eye_control_mid').head + Vector((0.0325, 0, 0))*scale, edit_bones.get('eye_control_mid').tail + Vector((0.0325, 0, 0))*scale, 0, "eye_control_mid"),
+            ('eye_control_l', edit_bones.get('eye_control_mid').head + Vector((-0.0325, 0, 0))*scale, edit_bones.get('eye_control_mid').tail + Vector((-0.0325, 0, 0))*scale, 0, "eye_control_mid")
+        ]
+    
+        for new_bone in dependent_rig_bones:
+            edit_bone: bpy.types.EditBone = edit_bones.new(new_bone[0])
+            edit_bone.head = new_bone[1]
+            edit_bone.tail = new_bone[2]
+            edit_bone.roll = new_bone[3]
+            edit_bone.parent = edit_bones.get(new_bone[4])
 
     # current, target
     # connect bone tail to target head
@@ -1194,6 +1215,8 @@ def apply_tasty_rig(master_skeleton: bpy.types.Armature):
         ('hand_l', 'hand_ik_l', 1.0),
         ('foot_r', 'foot_ik_r', 1.0),
         ('foot_l', 'foot_ik_l', 1.0),
+        ('foot_offset_r', 'foot_r', 1.0),
+        ('foot_offset_l', 'foot_l', 1.0),
 
         ('L_eye_lid_upper_mid', 'L_eye', 0.25),
         ('L_eye_lid_lower_mid', 'L_eye', 0.25),
@@ -1641,8 +1664,41 @@ def import_response(response):
                     corrective_smooth.use_pin_boundary = True
 
                 rig_type = RigType(import_settings.get("RigType"))
-                if rig_type == RigType.DEFAULT and import_settings.get("LobbyPoses") and (sequence_data := import_data.get("LinkedSequence")):
-                    import_animation_data(sequence_data, override_skel=master_skeleton)
+                if rig_type == RigType.DEFAULT:
+                    if import_settings.get("LobbyPoses") and (sequence_data := import_data.get("LinkedSequence")):
+                        import_animation_data(sequence_data, override_skel=master_skeleton)
+
+                    bpy.context.view_layer.objects.active = master_skeleton
+                    bpy.ops.object.mode_set(mode='POSE')
+                    bpy.ops.pose.select_all(action='DESELECT')
+                    pose_bones = master_skeleton.pose.bones
+
+                    copy_rotation_bones = [
+                        ('dfrm_upperarm_r', 'upperarm_r', 1.0),
+                        ('dfrm_upperarm_l', 'upperarm_l', 1.0),
+                        ('dfrm_lowerarm_r', 'lowerarm_r', 1.0),
+                        ('dfrm_lowerarm_l', 'lowerarm_l', 1.0),
+
+                        ('dfrm_thigh_r', 'thigh_r', 1.0),
+                        ('dfrm_thigh_l', 'thigh_l', 1.0),
+                        ('dfrm_calf_r', 'calf_r', 1.0),
+                        ('dfrm_calf_l', 'calf_l', 1.0),
+                    ]
+
+                    for bone_data in copy_rotation_bones:
+                        current, target, weight = bone_data
+                        if not (pose_bone := pose_bones.get(current)):
+                            continue
+
+                        con = pose_bone.constraints.new('COPY_ROTATION')
+                        con.target = master_skeleton
+                        con.subtarget = target
+                        con.influence = weight
+                        con.target_space = 'LOCAL_OWNER_ORIENT'
+                        con.owner_space = 'LOCAL'
+
+                    bpy.ops.object.mode_set(mode='OBJECT')
+                    bpy.ops.object.select_all(action='DESELECT')
                 
                 if rig_type == RigType.TASTY:
                     apply_tasty_rig(master_skeleton)

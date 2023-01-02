@@ -209,9 +209,7 @@ public class MeshExportData : ExportDataBase
             return true;
         });
         if (!canContinue) return null;
-
-        data.ProcessStyles(asset, styles);
-
+        await Task.Run(() => data.ProcessStyles(asset, styles));
         await Task.WhenAll(ExportHelpers.Tasks);
         return data;
     }
@@ -253,7 +251,18 @@ public static class MeshExportExtensions
                     var metaTagQuery = condition.Get<FStructFallback>("MetaTagQuery");
                     var tagDictionary = metaTagQuery.Get<FStructFallback[]>("TagDictionary");
                     var requiredTags = tagDictionary.Select(x => x.Get<FName>("TagName").Text).ToList();
-                    if (requiredTags.All(x => totalMetaTags.Contains(x)))
+                    var isValid = true;
+                    foreach (var requiredTag in requiredTags)
+                    {
+                        if (requiredTag.Contains("NotStyle") && totalMetaTags.Contains(requiredTag))
+                        {
+                            isValid = false;
+                            break;
+                        }
+                        if (totalMetaTags.Contains(requiredTag)) continue;
+                    }
+
+                    if (isValid)
                     {
                         ExportStyleData(option, data);
                     }
