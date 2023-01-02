@@ -64,7 +64,6 @@ public class Maxwell : IRenderable
     
     public void Render(Camera camera)
     {
-        GL.DepthFunc(DepthFunction.Lequal);
         VAO.Bind();
 
         Shader.Use();
@@ -79,7 +78,6 @@ public class Maxwell : IRenderable
         GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgb, Texture.Width, Texture.Height, 0, PixelFormat.Rgb, PixelType.UnsignedByte, Texture.Data);
 
         GL.DrawElements(PrimitiveType.Triangles, Indices.Count, DrawElementsType.UnsignedInt, 0);
-        GL.DepthFunc(DepthFunction.Less);
     }
     
     public void Dispose()
