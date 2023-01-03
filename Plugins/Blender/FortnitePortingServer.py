@@ -1609,13 +1609,14 @@ def import_response(response):
                         
                     if import_type == "Prop":
                         imported_part.location = imported_part.location + Vector((1,0,0))*import_index
-    
+
                     has_armature = imported_part.type == "ARMATURE"
                     if has_armature:
                         mesh = mesh_from_armature(imported_part)
                     else:
                         mesh = imported_part
                     bpy.context.view_layer.objects.active = mesh
+                    bpy.context.object.data.validate(verbose=True)
     
                     imported_parts.append({
                         "Part": part_type,
