@@ -220,8 +220,12 @@ public partial class MainViewModel : ObservableObject
             WindowBorder = WindowBorder.Fixed,
             Profile = ContextProfile.Core,
             APIVersion = new Version(4, 6),
-            Title = "Model Viewer"
+            Title = "Model Viewer",
+            StartVisible = false
         });
+        
+        AppVM.AssetHandlerVM?.Handlers[CurrentAssetType].PauseState.Pause();
+        ModelViewer.Closing += _ => AppVM.AssetHandlerVM?.Handlers[CurrentAssetType].PauseState.Unpause();
         
         if (CurrentAsset is not null) ModelViewer.LoadAsset(CurrentAsset);
         ModelViewer.Run();

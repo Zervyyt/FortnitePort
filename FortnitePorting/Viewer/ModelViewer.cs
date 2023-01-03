@@ -44,10 +44,7 @@ public class ModelViewer : GameWindow
         foreach (var part in parts)
         {
             var skeletalMesh = part.Get<USkeletalMesh>("SkeletalMesh");
-            if (skeletalMesh.TryConvert(out var convertedMesh))
-            {
-                Renderer.Add(new UnrealModel(convertedMesh));
-            }
+            Renderer.Add(new UnrealModel(skeletalMesh));
         }
     }
 

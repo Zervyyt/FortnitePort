@@ -11,7 +11,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
+using CUE4Parse_Conversion.Textures;
+using CUE4Parse.UE4.Assets.Exports.Texture;
 using SkiaSharp;
+using StbImageSharp;
 
 namespace FortnitePorting.Views.Extensions;
 
@@ -67,5 +70,11 @@ public static class MiscExtensions
     public static string AsString(this byte[] bytes)
     {
         return Encoding.UTF8.GetString(bytes);
+    }
+
+    public static ImageResult? ToImageResult(this UTexture2D? texture)
+    {
+        var bitmap = texture?.Decode();
+        return ImageResult.FromMemory(bitmap?.Encode(SKEncodedImageFormat.Png, 100).ToArray(), ColorComponents.RedGreenBlue);
     }
 }

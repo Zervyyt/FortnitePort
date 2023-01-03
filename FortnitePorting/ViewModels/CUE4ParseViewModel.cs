@@ -236,9 +236,10 @@ public class CUE4ParseViewModel : ObservableObject
             var assetRegistry = new FAssetRegistryState(assetArchive);
             AssetDataBuffers.AddRange(assetRegistry.PreallocatedAssetDataBuffers);
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            AppLog.Warning($"Failed to load asset registry: {file.Name}");
+            AppLog.Warning($"Failed to load asset registry: {file.Path}");
+            Log.Error(e.Message + e.StackTrace);
         }
     }
 }

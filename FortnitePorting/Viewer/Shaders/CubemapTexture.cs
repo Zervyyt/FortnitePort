@@ -6,14 +6,14 @@ using CUE4Parse.UE4.Objects.Core.Misc;
 using OpenTK.Graphics.OpenGL;
 using StbImageSharp;
 
-public class Texture : IDisposable
+public class CubemapTexture : IDisposable
 {
     private readonly int Handle;
 
     public int Width;
     public int Height;
     
-    public Texture(params string[] textures)
+    public CubemapTexture(params string[] textures)
     {
         Handle = GL.GenTexture();
         Bind();
@@ -39,10 +39,15 @@ public class Texture : IDisposable
         GL.TexImage2D(target, 0, PixelInternalFormat.Rgba8, Width, Height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, img.Data);
     }
 
+    public void Bind(TextureUnit unit)
+    {
+        GL.ActiveTexture(unit);
+        GL.BindTexture(TextureTarget.Texture2D, Handle);
+    }
+    
     public void Bind()
     {
-        GL.ActiveTexture(TextureUnit.Texture0);
-        GL.BindTexture(TextureTarget.TextureCubeMap, Handle);
+        GL.BindTexture(TextureTarget.Texture2D, Handle);
     }
 
     public void Dispose()

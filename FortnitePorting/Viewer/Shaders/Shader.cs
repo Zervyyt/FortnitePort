@@ -51,6 +51,11 @@ public class Shader : IDisposable
     {
         GL.Uniform1(GetUniformLocation(name), value);
     }
+    
+    public void SetUniform3(string name, Vector3 pos)
+    {
+        GL.Uniform3(GetUniformLocation(name), pos.X, pos.Y, pos.Z);
+    }
 
 
     private int LoadShader(string name, ShaderType type)
