@@ -4,6 +4,7 @@ using CUE4Parse_Conversion.Meshes;
 using CUE4Parse_Conversion.Meshes.PSK;
 using CUE4Parse.UE4.Assets.Exports.Material;
 using CUE4Parse.UE4.Assets.Exports.SkeletalMesh;
+using FortnitePorting.Viewer.Shaders;
 
 namespace FortnitePorting.Viewer.Models;
 
@@ -24,9 +25,9 @@ public class UnrealModel : IRenderable
         Sections.ForEach(x=> x.Setup());
     }
     
-    public void Render(Camera camera)
+    public void Render(Camera camera, Shader? shader)
     {
-        Sections.ForEach(x=> x.Render(camera));
+        Sections.ForEach(x=> x.Render(camera, shader));
     }
     
     public void Dispose()

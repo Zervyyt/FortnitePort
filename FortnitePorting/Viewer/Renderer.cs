@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FortnitePorting.Viewer.Models;
+using FortnitePorting.Viewer.Shaders;
 using OpenTK.Windowing.Common;
 
 namespace FortnitePorting.Viewer;
@@ -8,6 +9,14 @@ public class Renderer
 {
     private readonly List<IRenderable> Dynamic = new();
     private readonly List<IRenderable> Static = new();
+
+    private Shader Shader;
+
+    public void Setup()
+    {
+        Shader = new Shader("shader");
+        Shader.Use();
+    }
 
     public void Add(IRenderable renderable)
     {
@@ -30,7 +39,7 @@ public class Renderer
     {
         foreach (var renderable in Dynamic)
         {
-            renderable.Render(camera);
+            renderable.Render(camera, Shader);
         }
         
         foreach (var renderable in Static)

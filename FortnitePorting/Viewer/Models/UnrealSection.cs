@@ -24,7 +24,6 @@ public class UnrealSection : IRenderable
     public Buffer<float> VBO { get; set; }
     public Buffer<uint> EBO { get; set; }
     public VertexArray<float> VAO { get; set; }
-    public Shader Shader { get; set; }
     public Matrix4 Transform { get; set; }
     
     private List<float> Vertices = new();
@@ -107,25 +106,22 @@ public class UnrealSection : IRenderable
         VAO.VertexAttribPointer(3, 3, VertexAttribPointerType.Float, VertexSize, 8);
         
         EBO = new Buffer<uint>(Indices.ToArray(), BufferTarget.ElementArrayBuffer);
-
-        Shader = new Shader("shader");
-        Shader.Use();
     }
     
-    public void Render(Camera camera)
+    public void Render(Camera camera, Shader? shader)
     {
         VAO.Bind();
 
-        Shader.Use();
-        Shader.SetMatrix4("uTransform", Matrix4.Identity);
-        Shader.SetMatrix4("uView", camera.GetViewMatrix());
-        Shader.SetMatrix4("uProjection", camera.GetProjectionMatrix());
-        Shader.SetUniform("diffuseTex", 0);
-        Shader.SetUniform("normalTex", 1);
-        Shader.SetUniform("specularTex", 2);
-        Shader.SetUniform("maskTex", 3);
-        Shader.SetUniform("cubemap", 4);
-        Shader.SetUniform3("viewPos", camera.Position);
+        shader.Use();
+        shader.SetMatrix4("uTransform", Matrix4.Identity);
+        shader.SetMatrix4("uView", camera.GetViewMatrix());
+        shader.SetMatrix4("uProjection", camera.GetProjectionMatrix());
+        shader.SetUniform("diffuseTex", 0);
+        shader.SetUniform("normalTex", 1);
+        shader.SetUniform("specularTex", 2);
+        shader.SetUniform("maskTex", 3);
+        shader.SetUniform("cubemap", 4);
+        shader.SetUniform3("viewPos", camera.Position);
         
         Diffuse?.Bind(TextureUnit.Texture0);
         Normals?.Bind(TextureUnit.Texture1);
@@ -146,7 +142,6 @@ public class UnrealSection : IRenderable
         VBO.Dispose();
         EBO.Dispose();
         VAO.Dispose();
-        Shader.Dispose();
         GL.DeleteProgram(Handle);
     }
 }

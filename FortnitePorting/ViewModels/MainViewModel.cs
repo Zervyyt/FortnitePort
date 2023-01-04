@@ -216,12 +216,13 @@ public partial class MainViewModel : ObservableObject
         ModelViewer ??= new ModelViewer(GameWindowSettings.Default, new NativeWindowSettings
         {
             Size = new Vector2i(960, 540),
-            NumberOfSamples = 4,
-            WindowBorder = WindowBorder.Fixed,
+            NumberOfSamples = 8,
+            WindowBorder = WindowBorder.Resizable,
             Profile = ContextProfile.Core,
             APIVersion = new Version(4, 6),
             Title = "Model Viewer",
-            StartVisible = false
+            StartVisible = false,
+            Flags = ContextFlags.ForwardCompatible,
         });
         
         AppVM.AssetHandlerVM?.Handlers[CurrentAssetType].PauseState.Pause();

@@ -87,7 +87,7 @@ public class Skybox : IRenderable
         Cubemap = new CubemapTexture(textures);
     }
     
-    public void Render(Camera camera)
+    public void Render(Camera camera, Shader? shader)
     {
         GL.DepthFunc(DepthFunction.Lequal);
         

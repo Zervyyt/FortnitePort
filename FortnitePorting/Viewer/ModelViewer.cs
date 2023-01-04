@@ -28,6 +28,7 @@ public class ModelViewer : GameWindow
     public ModelViewer(GameWindowSettings gameSettings, NativeWindowSettings nativeSettings) : base(gameSettings, nativeSettings)
     {
         Renderer = new Renderer();
+        Renderer.Setup();
         Camera = new Camera();
         
         Renderer.AddStatic(new Skybox());
@@ -44,6 +45,7 @@ public class ModelViewer : GameWindow
         foreach (var part in parts)
         {
             var skeletalMesh = part.Get<USkeletalMesh>("SkeletalMesh");
+            Log.Information(skeletalMesh.Name);
             Renderer.Add(new UnrealModel(skeletalMesh));
         }
     }
@@ -57,6 +59,8 @@ public class ModelViewer : GameWindow
 
         GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         GL.Enable(EnableCap.DepthTest);
+        GL.Enable(EnableCap.Multisample);
+        
         SetVisibility(true);
     }
 
@@ -126,6 +130,13 @@ public class ModelViewer : GameWindow
         base.OnClosing(e);
         
         SetVisibility(false);
+    }
+    
+    protected override void OnResize(ResizeEventArgs e)
+    {
+        base.OnResize(e);
+        GL.Viewport(0, 0, e.Width, e.Height);
+        Camera.AspectRatio = e.Width / (float) e.Height;
     }
     
     private unsafe void SetVisibility(bool open)
