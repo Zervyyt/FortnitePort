@@ -15,6 +15,7 @@ public class FortniteCentralEndpoint : EndpointBase
     {
         var request = new RestRequest(KEY_URL);
         var response = await _client.ExecuteAsync<AesResponse>(request).ConfigureAwait(false);
+        Log.Information("[{Method}] {StatusDescription} ({StatusCode}): {URI}", request.Method, response.StatusDescription, (int) response.StatusCode, response.ResponseUri?.OriginalString);
         return response.Data;
     }
 
@@ -27,6 +28,7 @@ public class FortniteCentralEndpoint : EndpointBase
     {
         var request = new RestRequest(MAPPINGS_URL);
         var response = await _client.ExecuteAsync<MappingsResponse[]>(request).ConfigureAwait(false);
+        Log.Information("[{Method}] {StatusDescription} ({StatusCode}): {URI}", request.Method, response.StatusDescription, (int) response.StatusCode, response.ResponseUri?.OriginalString);
         return response.Data;
     }
 
