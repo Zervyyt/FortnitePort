@@ -62,7 +62,7 @@ public class Maxwell : IRenderable
         Texture = ImageResult.FromStream(File.OpenRead(@"C:\Users\Max\Downloads\dingus-the-cat\textures\dingus_nowhiskers.jpg"), ColorComponents.RedGreenBlue);
     }
     
-    public void Render(Camera camera, Shader? shader)
+    public void Render(Camera camera)
     {
         VAO.Bind();
 

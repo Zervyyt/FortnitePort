@@ -66,7 +66,7 @@ public class Skybox : IRenderable
         -0.5f,  0.5f, -0.5f
     };
 
-    private CubemapTexture Cubemap;
+    public CubemapTexture Cubemap;
 
     public Skybox()
     {
@@ -83,11 +83,12 @@ public class Skybox : IRenderable
 
         Shader = new Shader("skybox");
         Shader.Use();
+        
         var textures = new[] { "px", "nx", "ny", "py", "pz", "nz" };
         Cubemap = new CubemapTexture(textures);
     }
     
-    public void Render(Camera camera, Shader? shader)
+    public void Render(Camera camera)
     {
         GL.DepthFunc(DepthFunction.Lequal);
         

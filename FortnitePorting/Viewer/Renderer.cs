@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using CUE4Parse.UE4.Assets.Exports.Material;
 using FortnitePorting.Viewer.Models;
 using FortnitePorting.Viewer.Shaders;
 using OpenTK.Windowing.Common;
@@ -9,13 +11,18 @@ public class Renderer
 {
     private readonly List<IRenderable> Dynamic = new();
     private readonly List<IRenderable> Static = new();
+    private readonly List<Material> Materials = new();
 
-    private Shader Shader;
+    public Skybox Skybox;
+    public Shader ModelShader;
 
     public void Setup()
     {
-        Shader = new Shader("shader");
-        Shader.Use();
+        ModelShader = new Shader("shader");
+        ModelShader.Use();
+        
+        Skybox = new Skybox();
+        Skybox.Setup();
     }
 
     public void Add(IRenderable renderable)
@@ -33,18 +40,33 @@ public class Renderer
     public void Clear()
     {
         Dynamic.Clear();
+        Materials.Clear();
     }   
 
     public void Render(Camera camera)
     {
         foreach (var renderable in Dynamic)
         {
-            renderable.Render(camera, Shader);
+            renderable.Render(camera);
         }
         
         foreach (var renderable in Static)
         {
             renderable.Render(camera);
         }
+        
+        Skybox.Render(camera);
+    }
+
+    public Material? GetAddMaterial(UMaterialInterface? materialInterface)
+    {
+        if (materialInterface is null) return null;
+        
+        var foundMaterial = Materials.FirstOrDefault(mat => mat.Interface == materialInterface);
+        if (foundMaterial is not null) return foundMaterial;
+
+        var material = new Material(materialInterface);
+        Materials.Add(material);
+        return material;
     }
 }

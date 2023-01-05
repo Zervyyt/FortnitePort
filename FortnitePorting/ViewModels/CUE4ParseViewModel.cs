@@ -88,7 +88,7 @@ public class CUE4ParseViewModel : ObservableObject
         var bundleDownloaderSuccess = await BundleDownloader.Initialize();
         if (bundleDownloaderSuccess)
         {
-            Log.Information("Successfully initialized Bundle Downloader");
+            Log.Information("Successfully Initialized Bundle Downloader");
         }
         else
         {

@@ -1,10 +1,13 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
+using CUE4Parse_Conversion.Textures;
 using CUE4Parse.UE4.Assets.Exports.Texture;
 using CUE4Parse.UE4.Objects.Core.Math;
 using CUE4Parse.UE4.Objects.Core.Misc;
 using FortnitePorting.Views.Extensions;
 using OpenTK.Graphics.OpenGL;
+using SkiaSharp;
 using StbImageSharp;
 
 public class Texture : IDisposable
@@ -17,11 +20,13 @@ public class Texture : IDisposable
     
     public Texture(UTexture2D texture)
     {
-        Image = texture.ToImageResult();
         Handle = GL.GenTexture();
         Bind();
         
-        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgb, Image.Width, Image.Height, 0, PixelFormat.Rgb, PixelType.UnsignedByte, Image.Data);
+        var firstMip = texture.GetFirstMip();
+        TextureDecoder.DecodeTexture(firstMip, texture.Format, texture.isNormalMap, ETexturePlatform.DesktopMobile, out var data, out _);
+        
+        GL.TexImage2D(TextureTarget.Texture2D, 0, texture.SRGB ? PixelInternalFormat.Srgb : PixelInternalFormat.Rgb, firstMip.SizeX, firstMip.SizeY, 0, PixelFormat.Rgba, PixelType.UnsignedByte, data);
 
         GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int) TextureMinFilter.Linear);
         GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int) TextureMinFilter.Linear);

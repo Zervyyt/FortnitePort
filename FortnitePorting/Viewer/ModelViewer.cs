@@ -45,7 +45,6 @@ public class ModelViewer : GameWindow
         foreach (var part in parts)
         {
             var skeletalMesh = part.Get<USkeletalMesh>("SkeletalMesh");
-            Log.Information(skeletalMesh.Name);
             Renderer.Add(new UnrealModel(skeletalMesh));
         }
     }
@@ -60,6 +59,7 @@ public class ModelViewer : GameWindow
         GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         GL.Enable(EnableCap.DepthTest);
         GL.Enable(EnableCap.Multisample);
+        GL.Enable(EnableCap.FramebufferSrgb);
         
         SetVisibility(true);
     }

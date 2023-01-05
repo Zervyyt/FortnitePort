@@ -17,7 +17,7 @@ public class UnrealModel : IRenderable
         
         var lod = convertedMesh.LODs[0];
         var sections = lod.Sections.Value;
-        Sections.AddRange(sections.Select(x => new UnrealSection(lod, x, skeletalMesh.Materials[x.MaterialIndex].Load<UMaterialInterface>())));
+        Sections.AddRange(sections.Select(x => new UnrealSection(lod, x, skeletalMesh.Materials[x.MaterialIndex]?.Load<UMaterialInterface>())));
     }
 
     public void Setup()
@@ -25,9 +25,9 @@ public class UnrealModel : IRenderable
         Sections.ForEach(x=> x.Setup());
     }
     
-    public void Render(Camera camera, Shader? shader)
+    public void Render(Camera camera)
     {
-        Sections.ForEach(x=> x.Render(camera, shader));
+        Sections.ForEach(x=> x.Render(camera));
     }
     
     public void Dispose()

@@ -7,6 +7,6 @@ namespace FortnitePorting.Viewer.Models;
 
 public interface IRenderable : IDisposable
 {
-    public void Render(Camera camera, Shader? shader = null);
+    public void Render(Camera camera);
     public void Setup();
 }

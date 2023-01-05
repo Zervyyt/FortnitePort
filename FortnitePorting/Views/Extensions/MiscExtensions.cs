@@ -71,10 +71,4 @@ public static class MiscExtensions
     {
         return Encoding.UTF8.GetString(bytes);
     }
-
-    public static ImageResult? ToImageResult(this UTexture2D? texture)
-    {
-        var bitmap = texture?.Decode();
-        return ImageResult.FromMemory(bitmap?.Encode(SKEncodedImageFormat.Png, 100).ToArray(), ColorComponents.RedGreenBlue);
-    }
 }

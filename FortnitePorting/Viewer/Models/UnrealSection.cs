@@ -13,6 +13,7 @@ using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
 using SkiaSharp;
 using StbImageSharp;
+using Material = FortnitePorting.Viewer.Shaders.Material;
 using PrimitiveType = OpenTK.Graphics.OpenGL.PrimitiveType;
 using TextureWrapMode = OpenTK.Graphics.OpenGL.TextureWrapMode;
 
@@ -29,12 +30,8 @@ public class UnrealSection : IRenderable
     private List<float> Vertices = new();
     private List<uint> Indices = new();
     private const int VertexSize = 3 + 2 + 3 + 3; // Pos + UV + Normal + Tangent
-    
-    private Texture? Diffuse;
-    private Texture? Normals;
-    private Texture? SpecularMasks;
-    private Texture? Mask;
-    private CubemapTexture? Cubemap;
+
+    private Material? Material;
 
     public UnrealSection(CSkelMeshLod lod, CMeshSection section, UMaterialInterface? material)
     {
@@ -54,43 +51,13 @@ public class UnrealSection : IRenderable
 
             Vertices.AddRange(new[] { 
                 position.X, position.Z, position.Y, 
-                texCoord.U, 1 - texCoord.V, 
+                texCoord.U, texCoord.V, 
                 normal.X, normal.Z, normal.Y,
                 tangent.X, tangent.Z, tangent.Y
             });
         }
         
-        if (material is null) return;
-
-        var parameters = new CMaterialParams2();
-        material.GetParams(parameters, EMaterialFormat.AllLayers);
-        
-        if (parameters.TryGetTexture2d(out var diffuse, "Diffuse"))
-        {
-            Diffuse = new Texture(diffuse);
-            Diffuse.Bind();
-        }
-        
-        if (parameters.TryGetTexture2d(out var normals, "Normals"))
-        {
-            Normals = new Texture(normals);
-            Normals.Bind();
-        }
-        
-        if (parameters.TryGetTexture2d(out var specular, "SpecularMasks"))
-        {
-            SpecularMasks = new Texture(specular);
-            SpecularMasks.Bind();
-        }
-        
-        if (parameters.TryGetTexture2d(out var mask, "M"))
-        {
-            Mask = new Texture(mask);
-            Mask.Bind();
-        }
-        
-        var textures = new[] { "px", "nx", "ny", "py", "pz", "nz" };
-        Cubemap = new CubemapTexture(textures);
+        Material = AppVM.MainVM.ModelViewer?.Renderer.GetAddMaterial(material);
     }
 
     public void Setup()
@@ -108,10 +75,11 @@ public class UnrealSection : IRenderable
         EBO = new Buffer<uint>(Indices.ToArray(), BufferTarget.ElementArrayBuffer);
     }
     
-    public void Render(Camera camera, Shader? shader)
+    public void Render(Camera camera)
     {
         VAO.Bind();
-
+            
+        var shader = AppVM.MainVM.ModelViewer.Renderer.ModelShader;
         shader.Use();
         shader.SetMatrix4("uTransform", Matrix4.Identity);
         shader.SetMatrix4("uView", camera.GetViewMatrix());
@@ -123,11 +91,7 @@ public class UnrealSection : IRenderable
         shader.SetUniform("cubemap", 4);
         shader.SetUniform3("viewPos", camera.Position);
         
-        Diffuse?.Bind(TextureUnit.Texture0);
-        Normals?.Bind(TextureUnit.Texture1);
-        SpecularMasks?.Bind(TextureUnit.Texture2);
-        Mask?.Bind(TextureUnit.Texture3);
-        Cubemap?.Bind(TextureUnit.Texture4);
+        Material?.Bind();
 
         GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
         GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMinFilter.Nearest);

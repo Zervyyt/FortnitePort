@@ -26,7 +26,6 @@ vec3 calcReflection(vec3 normals)
     return texture(cubemap, R).rgb;
 }
 
-
 vec3 calcNormals() 
 {
     vec3 normalTexture = samplerToColor(normalTex).rgb;
@@ -75,27 +74,49 @@ vec3 blendSoftLight(vec3 base, vec3 blend) {
     );
 }
 
+float distributionGGX(float roughness, float nDotH)
+{
+    float numerator = pow(roughness, 2);
+    float denominator = PI * pow((pow(nDotH, 2) * (numerator - 1)+1), 2);
+    return (numerator * numerator) / denominator;
+}
+
+float geometryShlickGGX(float k, float NdotV)
+{
+    float nom   = NdotV;
+    float denom = NdotV * (1.0 - k) + k;
+
+    return nom / denom;
+}
+
+float geometrySmith(float roughness, float nDotV, float nDotL)
+{
+    float r = (roughness + 1.0f);
+    float k = (r * r) / 8.0f;
+    
+    float ggx1 = geometryShlickGGX(roughness, k);
+    float ggx2 = geometryShlickGGX(roughness, k);
+
+    return ggx1 * ggx2;
+}
+
+vec3 fresnelSchlick(vec3 diffuseColor, float metallic, float hDotV)
+{
+    vec3 F0 = vec3(0.04);
+    F0 = mix(F0, diffuseColor, metallic);
+    return F0 + (1.0 - F0) * pow(clamp(1.0 - hDotV, 0, 1), 5);
+}
+
 vec3 calcLight() 
 {
-    /*float lightStrength = 1.0;
-    vec3 lightColor = vec3(1.0f, 0.880164, 0.809952) * lightStrength;
-    
-    vec3 lightDirection = vec3(0.16f, 0.02f, 0.46f);
-    vec3 normals = calcNormals();
-    vec3 viewDir = normalize(viewPos - fPosition);
-    vec3 reflectDir = reflect(-lightDirection, normals);
-    
-    float diffuseLight = max(dot(normals, lightDirection), 0);
-    vec3 diffuseColor = diffuseLight * lightColor;*/
-
     vec3 maskTexture = samplerToColor(maskTex);
     vec3 diffuse = samplerToColor(diffuseTex);
 
     vec3 normal = calcNormals();
     vec3 specularMasks = samplerToColor(specularTex);
-    float specularStrength = specularMasks.r;
-    float metallicStrength = specularMasks.g;
-    float roughnessStrength = specularMasks.b;
+    float specular = specularMasks.r;
+    float metallic = specularMasks.g;
+    float roughness = specularMasks.b;
 
     // ambient
     vec3 ambientColor = irradiance(normal);
@@ -106,26 +127,37 @@ vec3 calcLight()
 
     // diffuse light
     float diffuseLight = max(dot(normal, lightDirection), 0.0f);
+    vec3 diffuseColor = diffuseLight * lightColor;
     
-    // TODO TWEAK BECAUSE IT LOOKS BAD
     // specular light
-    vec3 viewDirection = normalize(viewPos - fPosition);
-    vec3 halfwayVec = normalize(viewDirection + lightDirection);
-    float specAmount = pow(max(dot(normal, halfwayVec), 0.0f), (1-roughnessStrength)*256)*2;
-    float specularLight = specAmount * specularStrength;
+    vec3 l = normalize(lightDirection);
+    vec3 v = normalize(viewPos - fPosition);
+    vec3 h = normalize(v + l);
+
+    float nDotH = max(dot(normal, h), 0.0);
+    float hDotV = max(dot(h, v), 0.0);
+    float nDotL = max(dot(normal, l), 0.0);
+    float nDotV = max(dot(normal, v), 0.0);
+    
+    vec3 fresnel = fresnelSchlick(diffuse, metallic, hDotV);
+    float brdfNumerator = distributionGGX(roughness, nDotH) * geometrySmith(roughness, nDotV, nDotL);
+    float brdfDenominator = 4 * nDotV * nDotL + 0.0001;
+    float specularLight = specular * brdfNumerator * brdfDenominator;
+    vec3 specularColor = specularLight * lightColor;
+
+    vec3 kd = (1.0f - fresnel) * (1.0f - metallic);
+    diffuse *= kd;
     
     //final light
-    vec3 finalLighting = diffuse * (ambientColor + (diffuseLight + specularLight) * lightColor);
+    vec3 finalLighting = diffuse * (ambientColor + diffuseColor);
     
     // fake skin softening
     vec3 result = mix(finalLighting, diffuse, maskTexture.b * 0.3);
     
-    // metallic
-    result = mix(result, calcReflection(normal), metallicStrength*specularStrength);
-    result = mix(result, result * vec3(metallicStrength * specularStrength), metallicStrength * specularStrength);
-    
+    // ambient occlusion and cavity
     result *= mix(maskTexture.r, 1.0, 0.5);
     result = blendSoftLight(result, vec3(maskTexture.g));
+    
     
     return result;
 }

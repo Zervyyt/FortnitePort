@@ -94,15 +94,18 @@ class Receiver(threading.Thread):
 
 # Name, Slot, Location, *Linear
 texture_mappings = {
+    ("Trunk_BaseColor", "Diffuse", (-300, -75)),
     ("Diffuse", "Diffuse", (-300, -75)),
     ("PM_Diffuse", "Diffuse", (-300, -75)),
     ("PetalDetailMap", "Diffuse", (-300, -75)),
 
+    ("Trunk_Specular", "Specular Masks", (-300, -125), True),
     ("SpecularMasks", "Specular Masks", (-300, -125), True),
     ("PM_SpecularMasks", "Specular Masks", (-300, -125), True),
     ("Specular Mask", "Specular Masks", (-300, -125), True),
     ("SpecMap", "Specular Masks", (-300, -125), True),
 
+    ("Trunk_Normal", "Normals", (-300, -175), True),
     ("Normals", "Normals", (-300, -175), True),
     ("PM_Normals", "Normals", (-300, -125), True),
     ("Normal", "Normals", (-300, -175), True),
@@ -555,6 +558,24 @@ def import_material(target_slot: bpy.types.MaterialSlot, material_data):
                 
         name = data.get("Name")
         value = data.get("Value")
+
+        if name == "MaskTexture":
+            node = nodes.new(type="ShaderNodeTexImage")
+            node.image = import_texture(value)
+            node.image.alpha_mode = 'CHANNEL_PACKED'
+            node.hide = True
+            node.location = -500, -500
+            
+            separate_rgb = nodes.new(type="ShaderNodeSeparateRGB")
+            separate_rgb.location = -225, -500
+            separate_rgb.hide = True
+            
+            links.new(node.outputs[0], separate_rgb.inputs[0])
+            links.new(separate_rgb.outputs[0], shader_node.inputs["Alpha"])
+            
+            target_material.blend_method = "CLIP"
+            target_material.shadow_method = "CLIP"
+            return
 
         if (info := first(texture_mappings, lambda x: x[0].casefold() == name.casefold())) is None and name not in layered_texture_names and name not in added_textures:
             node = nodes.new(type="ShaderNodeTexImage")

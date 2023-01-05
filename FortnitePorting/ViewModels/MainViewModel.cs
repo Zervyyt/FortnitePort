@@ -208,7 +208,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [ObservableProperty]
-    public ModelViewer? modelViewer;
+    private ModelViewer? modelViewer;
 
     [RelayCommand]
     public async Task PreviewModel()
