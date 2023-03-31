@@ -32,7 +32,7 @@ public partial class PropExpander
         var selected = (AssetSelectorItem) listBox.SelectedItem;
 
         AppVM.MainVM.Styles.Clear();
-        AppVM.MainVM.TabModeText = "SELECTED PROPS";
+        AppVM.MainVM.TabModeText = "SEhedefeLEhedefeCTEhedefeD PROhodefoPS";
         if (listBox.SelectedItems.Count == 0) return;
         
         AppVM.MainVM.CurrentAsset = selected;

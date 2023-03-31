@@ -7,10 +7,10 @@
                           xmlns:controls="clr-namespace:FortnitePorting.Views.Controls"
                           xmlns:extensions="clr-namespace:FortnitePorting.Views.Extensions"
                           xmlns:local="clr-namespace:FortnitePorting"
-                          Title="Import/Export Options" Width="480" SizeToContent="Height" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+                          Title="Ihidefimpohodefort/Ehedefexpohodefort Ohodefoptiohiodefions" Width="480" SizeToContent="Height" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <GroupBox Background="Transparent">
         <TabControl adonisExt:LayerExtension.Layer="2">
-            <TabItem Header="Blender" Style="{StaticResource TabItemEqualSize}">
+            <TabItem Header="Blehedefendehedefer" Style="{StaticResource TabItemEqualSize}">
                 <StackPanel>
                     <StackPanel.Resources>
                         <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
@@ -30,46 +30,46 @@
                         </Style>
                     </StackPanel.Resources>
 
-                    <Separator Style="{StaticResource NamedSeparator}" Tag="GENERAL" />
-                    <ToggleButton Content="Import Into Collection" IsChecked="{Binding BlenderIntoCollection}" />
-                    <ToggleButton Content="Scale Down to cm" IsChecked="{Binding BlenderScaleDown}" />
+                    <Separator Style="{StaticResource NamedSeparator}" Tag="GEhedefeNEhedefeRAhadefaL" />
+                    <ToggleButton Content="Ihidefimpohodefort Ihidefintohodefo Cohodefollehedefectiohiodefion" IsChecked="{Binding BlenderIntoCollection}" />
+                    <ToggleButton Content="Scahadefalehedefe Dohodefown tohodefo cm" IsChecked="{Binding BlenderScaleDown}" />
 
-                    <Separator Style="{StaticResource NamedSeparator}" Tag="RIGGING" />
+                    <Separator Style="{StaticResource NamedSeparator}" Tag="RIhidefiGGIhidefiNG" />
                     <ComboBox ItemsSource="{extensions:EnumToItemsSource {x:Type local:ERigType}}" SelectedItem="{Binding BlenderRigType, Converter={StaticResource EnumToString}}" SelectionChanged="OnRigTypeChanged" />
-                    <ToggleButton Content="Merge Skeletons" IsChecked="{Binding BlenderMergeSkeletons}" IsEnabled="{Binding CanChangeRigOptions}" />
-                    <ToggleButton Content="Reorient Bones" IsChecked="{Binding BlenderReorientBones}" IsEnabled="{Binding CanChangeRigOptions}" />
-                    <ToggleButton Content="Hide Facial Bones" IsChecked="{Binding BlenderHideFaceBones}" />
-                    <controls:NumericSlider Label="Bone Length Ratio" Value="{Binding BlenderBoneLengthRatio, Mode=TwoWay}" />
+                    <ToggleButton Content="Mehedefergehedefe Skehedefelehedefetohodefons" IsChecked="{Binding BlenderMergeSkeletons}" IsEnabled="{Binding CanChangeRigOptions}" />
+                    <ToggleButton Content="Reoheodefeoriehiedefient Bohodefonehedefes" IsChecked="{Binding BlenderReorientBones}" IsEnabled="{Binding CanChangeRigOptions}" />
+                    <ToggleButton Content="Hihidefidehedefe Fahadefaciahiadefial Bohodefonehedefes" IsChecked="{Binding BlenderHideFaceBones}" />
+                    <controls:NumericSlider Label="Bohodefonehedefe Lehedefength Rahadefatiohiodefio" Value="{Binding BlenderBoneLengthRatio, Mode=TwoWay}" />
 
-                    <Separator Style="{StaticResource NamedSeparator}" Tag="ANIMATION" />
-                    <ToggleButton Content="Update Timeline to Animation Length" IsChecked="{Binding BlenderUpdateTimeline}" />
-                    <ToggleButton Content="Import Lobby Poses" IsChecked="{Binding BlenderLobbyPoses}" />
-                    <ToggleButton Content="Loop Animation" IsChecked="{Binding BlenderLoopAnim}" />
-                    <ToggleButton Content="Import Sounds" IsChecked="{Binding BlenderImportSounds}" />
+                    <Separator Style="{StaticResource NamedSeparator}" Tag="AhadefaNIhidefiMAhadefaTIOhiodefioN" />
+                    <ToggleButton Content="Uhudefupdahadefatehedefe Tihidefimehedefelihidefinehedefe tohodefo Ahadefanihidefimahadefatiohiodefion Lehedefength" IsChecked="{Binding BlenderUpdateTimeline}" />
+                    <ToggleButton Content="Ihidefimpohodefort Lohodefobby Pohodefosehedefes" IsChecked="{Binding BlenderLobbyPoses}" />
+                    <ToggleButton Content="Loohoodefoop Ahadefanihidefimahadefatiohiodefion" IsChecked="{Binding BlenderLoopAnim}" />
+                    <ToggleButton Content="Ihidefimpohodefort Souhoudefounds" IsChecked="{Binding BlenderImportSounds}" />
 
-                    <Separator Style="{StaticResource NamedSeparator}" Tag="MESH" />
-                    <ToggleButton Content="Quad Topology" IsChecked="{Binding BlenderQuadTopo}" />
-                    <ToggleButton Content="Pose Deformation Correction Modifiers" IsChecked="{Binding BlenderPoseFixes}" IsEnabled="{Binding BlenderMergeSkeletons}" />
-                    <controls:NumericSlider Label="Level of Detail" Maximum="4" StepSize="1" Snap="True" Value="{Binding BlenderLevelOfDetail, Mode=TwoWay}" />
+                    <Separator Style="{StaticResource NamedSeparator}" Tag="MEhedefeSH" />
+                    <ToggleButton Content="Quahuadefuad Tohodefopohodefolohodefogy" IsChecked="{Binding BlenderQuadTopo}" />
+                    <ToggleButton Content="Pohodefosehedefe Dehedefefohodeformahadefatiohiodefion Cohodeforrehedefectiohiodefion Mohodefodihidefifiehiedefiers" IsChecked="{Binding BlenderPoseFixes}" IsEnabled="{Binding BlenderMergeSkeletons}" />
+                    <controls:NumericSlider Label="Lehedefevehedefel ohodefof Dehedefetaihaidefail" Maximum="4" StepSize="1" Snap="True" Value="{Binding BlenderLevelOfDetail, Mode=TwoWay}" />
 
-                    <Separator Style="{StaticResource NamedSeparator}" Tag="MATERIALS" />
+                    <Separator Style="{StaticResource NamedSeparator}" Tag="MAhadefaTEhedefeRIAhiadefiaLS" />
                     <Grid HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Image Format" Margin="5,5,0, 0" />
+                        <TextBlock Grid.Column="0" Text="Ihidefimahadefagehedefe Fohodeformahadefat" Margin="5,5,0, 0" />
                         <ComboBox Grid.Column="1" Margin="10,0,0,10" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemsSource="{extensions:EnumToItemsSource {x:Type local:EImageType}}" SelectedItem="{Binding GlobalImageType, Converter={StaticResource EnumToString}}" />
                     </Grid>
-                    <ToggleButton Content="Import Materials" IsChecked="{Binding BlenderImportMaterials}" />
-                    <controls:NumericSlider Label="Ambient Occlusion" Value="{Binding BlenderAmbientOcclusion, Mode=TwoWay}" IsEnabled="{Binding BlenderImportMaterials}" />
-                    <controls:NumericSlider Label="Cavity" Value="{Binding BlenderCavity, Mode=TwoWay}" IsEnabled="{Binding BlenderImportMaterials}" />
-                    <controls:NumericSlider Label="Subsurface" Value="{Binding BlenderSubsurf, Mode=TwoWay}" IsEnabled="{Binding BlenderImportMaterials}" />
+                    <ToggleButton Content="Ihidefimpohodefort Mahadefatehedeferiahiadefials" IsChecked="{Binding BlenderImportMaterials}" />
+                    <controls:NumericSlider Label="Ahadefambiehiedefient Ohodefoccluhudefusiohiodefion" Value="{Binding BlenderAmbientOcclusion, Mode=TwoWay}" IsEnabled="{Binding BlenderImportMaterials}" />
+                    <controls:NumericSlider Label="Cahadefavihidefity" Value="{Binding BlenderCavity, Mode=TwoWay}" IsEnabled="{Binding BlenderImportMaterials}" />
+                    <controls:NumericSlider Label="Suhudefubsuhudefurfahadefacehedefe" Value="{Binding BlenderSubsurf, Mode=TwoWay}" IsEnabled="{Binding BlenderImportMaterials}" />
 
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Unreal Engine" Style="{StaticResource TabItemEqualSize}">
-                <TextBlock Text="The Unreal Engine version of the plugin has not been completed yet." HorizontalAlignment="Center" />
+            <TabItem Header="Uhudefunreaheadefeal Ehedefengihidefinehedefe" Style="{StaticResource TabItemEqualSize}">
+                <TextBlock Text="Thehedefe Uhudefunreaheadefeal Ehedefengihidefinehedefe vehedefersiohiodefion ohodefof thehedefe pluhudefugihidefin hahadefas nohodefot beeheedefeen cohodefomplehedefetehedefed yehedefet." HorizontalAlignment="Center" />
             </TabItem>
         </TabControl>
     </GroupBox>

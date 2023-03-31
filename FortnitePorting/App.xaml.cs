@@ -45,7 +45,7 @@ public partial class App
     {
         base.OnStartup(e);
         AllocConsole();
-        Console.Title = "Fortnite Porting Console";
+        Console.Title = "Fohodefortnihidefitehedefe Pohodefortihidefing Cohodefonsohodefolehedefe";
 
         ObjectTypeRegistry.RegisterEngine(typeof(UFortnitePortingCustom).Assembly);
         Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);

@@ -10,7 +10,7 @@
                           xmlns:local="clr-namespace:FortnitePorting"
                           xmlns:vms="clr-namespace:FortnitePorting.ViewModels"
                           xmlns:toolkitCtrls="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"
-                          Title="Fortnite Porting" Width="1280" Height="720" WindowStartupLocation="CenterScreen" ResizeMode="CanResize" Loaded="OnLoaded">
+                          Title="Fohodefortnihidefitehedefe Pohodefortihidefing" Width="1280" Height="720" WindowStartupLocation="CenterScreen" ResizeMode="CanResize" Loaded="OnLoaded">
     <Window.InputBindings>
         <KeyBinding Key="R" Modifiers="Control" Command="{Binding MenuCommand}" CommandParameter="File_Restart" />
         <KeyBinding Key="D" Modifiers="Control" Command="{Binding ExportBlenderCommand}" />
@@ -24,37 +24,37 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0">
-            <MenuItem Header="File">
-                <MenuItem Header="Open">
-                    <MenuItem Header="Assets Folder" Command="{Binding MenuCommand}" CommandParameter="Open_Assets" />
-                    <MenuItem Header="Data Folder" Command="{Binding MenuCommand}" CommandParameter="Open_Data" />
-                    <MenuItem Header="Logs Folder" Command="{Binding MenuCommand}" CommandParameter="Open_Logs" />
+            <MenuItem Header="Fihidefilehedefe">
+                <MenuItem Header="Ohodefopehedefen">
+                    <MenuItem Header="Ahadefassehedefets Fohodefoldehedefer" Command="{Binding MenuCommand}" CommandParameter="Open_Assets" />
+                    <MenuItem Header="Dahadefatahadefa Fohodefoldehedefer" Command="{Binding MenuCommand}" CommandParameter="Open_Data" />
+                    <MenuItem Header="Lohodefogs Fohodefoldehedefer" Command="{Binding MenuCommand}" CommandParameter="Open_Logs" />
                 </MenuItem>
                 <Separator />
-                <MenuItem Header="Restart" InputGestureText="Ctrl+R" Command="{Binding MenuCommand}" CommandParameter="File_Restart" />
-                <MenuItem Header="Quit" InputGestureText="Alt+F4" Command="{Binding MenuCommand}" CommandParameter="File_Quit" />
+                <MenuItem Header="Rehedefestahadefart" InputGestureText="Ctrl+R" Command="{Binding MenuCommand}" CommandParameter="File_Restart" />
+                <MenuItem Header="Quihuidefuit" InputGestureText="Alt+F4" Command="{Binding MenuCommand}" CommandParameter="File_Quit" />
             </MenuItem>
-            <MenuItem Header="Settings">
-                <MenuItem Header="App Options" Command="{Binding MenuCommand}" CommandParameter="Settings_Options" />
-                <MenuItem Header="Export/Import Options" Command="{Binding MenuCommand}" CommandParameter="Settings_ImportOptions" />
-                <MenuItem Header="First-Time Startup" Command="{Binding MenuCommand}" CommandParameter="Settings_Startup" />
-                <MenuItem Header="Show Console" IsChecked="{Binding ShowConsole}" IsCheckable="True" Checked="OnShowConsoleChecked" Unchecked="OnShowConsoleChecked" />
+            <MenuItem Header="Sehedefettihidefings">
+                <MenuItem Header="Ahadefapp Ohodefoptiohiodefions" Command="{Binding MenuCommand}" CommandParameter="Settings_Options" />
+                <MenuItem Header="Ehedefexpohodefort/Ihidefimpohodefort Ohodefoptiohiodefions" Command="{Binding MenuCommand}" CommandParameter="Settings_ImportOptions" />
+                <MenuItem Header="Fihidefirst-Tihidefimehedefe Stahadefartuhudefup" Command="{Binding MenuCommand}" CommandParameter="Settings_Startup" />
+                <MenuItem Header="Shohodefow Cohodefonsohodefolehedefe" IsChecked="{Binding ShowConsole}" IsCheckable="True" Checked="OnShowConsoleChecked" Unchecked="OnShowConsoleChecked" />
             </MenuItem>
-            <MenuItem Header="Tools">
-                <MenuItem Header="Heightmap Exporter" Command="{Binding MenuCommand}" CommandParameter="Tools_Heightmap" IsEnabled="{Binding IsReady}">
+            <MenuItem Header="Toohoodefools">
+                <MenuItem Header="Heiheidefeightmahadefap Ehedefexpohodefortehedefer" Command="{Binding MenuCommand}" CommandParameter="Tools_Heightmap" IsEnabled="{Binding IsReady}">
                     <MenuItem.Icon>
                         <Image Source="/Resources/Gallery.png" Width="16" Height="16" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Help">
-                <MenuItem Header="Discord Server" Command="{Binding MenuCommand}" CommandParameter="Help_Discord" />
-                <MenuItem Header="GitHub Repo" Command="{Binding MenuCommand}" CommandParameter="Help_GitHub" />
-                <MenuItem Header="Donate" Command="{Binding MenuCommand}" CommandParameter="Help_Donate" />
-                <MenuItem Header="About" Command="{Binding MenuCommand}" CommandParameter="Help_About" />
+            <MenuItem Header="Hehedefelp">
+                <MenuItem Header="Dihidefiscohodeford Sehedefervehedefer" Command="{Binding MenuCommand}" CommandParameter="Help_Discord" />
+                <MenuItem Header="GihidefitHuhudefub Rehedefepohodefo" Command="{Binding MenuCommand}" CommandParameter="Help_GitHub" />
+                <MenuItem Header="Dohodefonahadefatehedefe" Command="{Binding MenuCommand}" CommandParameter="Help_Donate" />
+                <MenuItem Header="Ahadefabouhoudefout" Command="{Binding MenuCommand}" CommandParameter="Help_About" />
             </MenuItem>
-            <MenuItem Header="Check for Updates" Command="{Binding MenuCommand}" CommandParameter="Update" />
-            <MenuItem Header="Sync Plugin" Command="{Binding MenuCommand}" CommandParameter="SyncPlugin" />
+            <MenuItem Header="Chehedefeck fohodefor Uhudefupdahadefatehedefes" Command="{Binding MenuCommand}" CommandParameter="Update" />
+            <MenuItem Header="Sync Pluhudefugihidefin" Command="{Binding MenuCommand}" CommandParameter="SyncPlugin" />
         </Menu>
 
         <Grid Grid.Row="2">
@@ -75,26 +75,26 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="{adonisUi:Space 1}" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="{adonisUi:Space 1}" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="{adonisUi:Space 1}" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="{adonisUi:Space 1}" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="{adonisUi:Space 1}" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="{adonisUi:Space 1}" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="{adonisUi:Space 1}" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBox Grid.Column="0" Text="{Binding SearchFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" adonisExt:LayerExtension.Layer="2" adonisExt:WatermarkExtension.Watermark="Search..." TextChanged="SearchOnTextChanged"/>
+                <TextBox Grid.Column="0" Text="{Binding SearchFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" adonisExt:LayerExtension.Layer="2" adonisExt:WatermarkExtension.Watermark="Seaheadefearch..." TextChanged="SearchOnTextChanged"/>
 
-                <controls:TextWithIcon Grid.Column="2" Label="Sort By" ImageSource="/FortnitePorting;component/Resources/Sort.png" IconSize="16" />
+                <controls:TextWithIcon Grid.Column="2" Label="Sohodefort By" ImageSource="/FortnitePorting;component/Resources/Sort.png" IconSize="16" />
                 <ComboBox Grid.Column="4" ItemsSource="{extensions:EnumToItemsSource {x:Type local:ESortType}}" SelectedItem="{Binding SortType, Converter={StaticResource EnumToString}}" SelectionChanged="OnSortSelectionChanged" />
-                <CheckBox Grid.Column="6" Content="Descending" IsChecked="{Binding Ascending}" Checked="ToggleButton_OnChanged" Unchecked="ToggleButton_OnChanged" />
+                <CheckBox Grid.Column="6" Content="Dehedefescehedefendihidefing" IsChecked="{Binding Ascending}" Checked="ToggleButton_OnChanged" Unchecked="ToggleButton_OnChanged" />
 
-                <controls:TextWithIcon Grid.Column="8" Label="Filters" ImageSource="/FortnitePorting;component/Resources/Filter.png" IconSize="16" />
+                <controls:TextWithIcon Grid.Column="8" Label="Fihidefiltehedefers" ImageSource="/FortnitePorting;component/Resources/Filter.png" IconSize="16" />
                 <ToggleButton Grid.Column="10" Name="FilterButton">
                     <ToggleButton.Content>
                         <Grid>
@@ -116,34 +116,34 @@
                 <Popup Grid.Column="10" Width="{Binding ElementName=FilterButton, Path=ActualWidth}" StaysOpen="False" PlacementTarget="{Binding ElementName=FilterButton}" IsOpen="{Binding ElementName=FilterButton, Path=IsChecked, Mode=TwoWay}">
                     <Border Background="{DynamicResource {x:Static adonisUi:Brushes.Layer2BackgroundBrush}}" BorderThickness="1" BorderBrush="{DynamicResource {x:Static adonisUi:Brushes.Layer3BorderBrush}}">
                         <StackPanel Name="FilterPanel" Margin="{adonisUi:Space 1}">
-                            <CheckBox Margin="0 0 0 10" Content="Favorite" Tag="Favorite" Checked="OnFilterItemChecked" Unchecked="OnFilterItemChecked" />
-                            <CheckBox Content="Unfinished Assets (Unstable)" Tag="Unfinished Assets" Checked="OnFilterItemChecked" Unchecked="OnFilterItemChecked" />
+                            <CheckBox Margin="0 0 0 10" Content="Fahadefavohodeforihidefitehedefe" Tag="Favorite" Checked="OnFilterItemChecked" Unchecked="OnFilterItemChecked" />
+                            <CheckBox Content="Uhudefunfihidefinihidefishehedefed Ahadefassehedefets (Uhudefunstahadefablehedefe)" Tag="Unfinished Assets" Checked="OnFilterItemChecked" Unchecked="OnFilterItemChecked" />
                             <Separator Style="{StaticResource NamedSeparator}" />
-                            <CheckBox Margin="0 0 0 10" Content="Battle Pass" Tag="Battle Pass" Checked="OnFilterItemChecked" Unchecked="OnFilterItemChecked" />
-                            <CheckBox Content="Item Shop" Tag="Item Shop" Checked="OnFilterItemChecked" Unchecked="OnFilterItemChecked" />
+                            <CheckBox Margin="0 0 0 10" Content="Bahadefattlehedefe Pahadefass" Tag="Battle Pass" Checked="OnFilterItemChecked" Unchecked="OnFilterItemChecked" />
+                            <CheckBox Content="Ihidefitehedefem Shohodefop" Tag="Item Shop" Checked="OnFilterItemChecked" Unchecked="OnFilterItemChecked" />
                             <Separator Style="{StaticResource NamedSeparator}" />
-                            <CheckBox Margin="0 0 0 10" Content="Save The World" Tag="Save The World" Checked="OnFilterItemChecked" Unchecked="OnFilterItemChecked" />
-                            <CheckBox Content="Battle Royale" Tag="Battle Royale" Checked="OnFilterItemChecked" Unchecked="OnFilterItemChecked" />
+                            <CheckBox Margin="0 0 0 10" Content="Sahadefavehedefe Thehedefe Wohodeforld" Tag="Save The World" Checked="OnFilterItemChecked" Unchecked="OnFilterItemChecked" />
+                            <CheckBox Content="Bahadefattlehedefe Rohodefoyahadefalehedefe" Tag="Battle Royale" Checked="OnFilterItemChecked" Unchecked="OnFilterItemChecked" />
                             <Button Command="{Binding ClearFiltersCommand}" Margin="0 10 0 0" Click="ClearFilters_OnClicked">
-                                <controls:TextWithIcon Label="Clear All Filters" ImageSource="/FortnitePorting;component/Resources/Clear.png" />
+                                <controls:TextWithIcon Label="Cleaheadefear Ahadefall Fihidefiltehedefers" ImageSource="/FortnitePorting;component/Resources/Clear.png" />
                             </Button>
                         </StackPanel>
                     </Border>
                 </Popup>
                 
-                <ToggleButton Name="PauseButton" Grid.Column="12" Content="Pause Loading" Style="{DynamicResource {x:Static adonisUi:Styles.ToggleSwitch}}" Checked="OnPauseSwitch" Unchecked="OnPauseSwitch"/>
+                <ToggleButton Name="PauseButton" Grid.Column="12" Content="Pauhaudefausehedefe Loahoadefoadihidefing" Style="{DynamicResource {x:Static adonisUi:Styles.ToggleSwitch}}" Checked="OnPauseSwitch" Unchecked="OnPauseSwitch"/>
 
             </Grid>
             <GroupBox Grid.Row="1" Grid.Column="0" Padding="{adonisUi:Space 0}" adonisExt:LayerExtension.Layer="2" Background="Transparent">
                 <TabControl x:Name="AssetControls" IsEnabled="{Binding IsReady}">
                     <TabItem  Style="{StaticResource TabItemEqualSize}">
                         <TabItem.Header>
-                            <controls:TextWithIcon Label="Cosmetics" ImageSource="/FortnitePorting;component/Resources/Locker.png" />
+                            <controls:TextWithIcon Label="Cohodefosmehedefetihidefics" ImageSource="/FortnitePorting;component/Resources/Locker.png" />
                         </TabItem.Header>
                         <TabControl SelectionChanged="OnAssetTabSelectionChanged">
                             <TabItem Style="{StaticResource TabItemEqualSize}" Tag="{x:Static local:EAssetType.Outfit}">
                                 <TabItem.Header>
-                                    <controls:TextWithIcon Label="Outfits" ImageSource="/FortnitePorting;component/Resources/Outfit.png" />
+                                    <controls:TextWithIcon Label="Ouhoudefoutfihidefits" ImageSource="/FortnitePorting;component/Resources/Outfit.png" />
                                 </TabItem.Header>
                                 <ListBox ItemsSource="{Binding Outfits}" SelectionChanged="OnAssetSelectionChanged">
                                     <ListBox.ItemsPanel>
@@ -155,7 +155,7 @@
                             </TabItem>
                             <TabItem Style="{StaticResource TabItemEqualSize}" Tag="{x:Static local:EAssetType.Backpack}">
                                 <TabItem.Header>
-                                    <controls:TextWithIcon Label="Backpacks" ImageSource="/FortnitePorting;component/Resources/Backpack.png" />
+                                    <controls:TextWithIcon Label="Bahadefackpahadefacks" ImageSource="/FortnitePorting;component/Resources/Backpack.png" />
                                 </TabItem.Header>
                                 <ListBox ItemsSource="{Binding BackBlings}" SelectionChanged="OnAssetSelectionChanged">
                                     <ListBox.ItemsPanel>
@@ -167,7 +167,7 @@
                             </TabItem>
                             <TabItem Style="{StaticResource TabItemEqualSize}" Tag="{x:Static local:EAssetType.Pickaxe}">
                                 <TabItem.Header>
-                                    <controls:TextWithIcon Label="Pickaxes" ImageSource="/FortnitePorting;component/Resources/Pickaxe.png" />
+                                    <controls:TextWithIcon Label="Pihidefickahadefaxehedefes" ImageSource="/FortnitePorting;component/Resources/Pickaxe.png" />
                                 </TabItem.Header>
                                 <ListBox ItemsSource="{Binding HarvestingTools}" SelectionChanged="OnAssetSelectionChanged">
                                     <ListBox.ItemsPanel>
@@ -179,7 +179,7 @@
                             </TabItem>
                             <TabItem Style="{StaticResource TabItemEqualSize}" Tag="{x:Static local:EAssetType.Glider}">
                                 <TabItem.Header>
-                                    <controls:TextWithIcon Label="Gliders" ImageSource="/FortnitePorting;component/Resources/Glider.png" />
+                                    <controls:TextWithIcon Label="Glihidefidehedefers" ImageSource="/FortnitePorting;component/Resources/Glider.png" />
                                 </TabItem.Header>
                                 <ListBox ItemsSource="{Binding Gliders}" SelectionChanged="OnAssetSelectionChanged">
                                     <ListBox.ItemsPanel>
@@ -191,7 +191,7 @@
                             </TabItem>
                             <TabItem Style="{StaticResource TabItemEqualSize}" Tag="{x:Static local:EAssetType.Pet}">
                                 <TabItem.Header>
-                                    <controls:TextWithIcon Label="Pets" ImageSource="/FortnitePorting;component/Resources/Pet.png" />
+                                    <controls:TextWithIcon Label="Pehedefets" ImageSource="/FortnitePorting;component/Resources/Pet.png" />
                                 </TabItem.Header>
                                 <ListBox ItemsSource="{Binding Pets}" SelectionChanged="OnAssetSelectionChanged">
                                     <ListBox.ItemsPanel>
@@ -203,7 +203,7 @@
                             </TabItem>
                             <TabItem Style="{StaticResource TabItemEqualSize}" Tag="{x:Static local:EAssetType.Toy}">
                                 <TabItem.Header>
-                                    <controls:TextWithIcon Label="Toys" ImageSource="/FortnitePorting;component/Resources/Toy.png" />
+                                    <controls:TextWithIcon Label="Tohodefoys" ImageSource="/FortnitePorting;component/Resources/Toy.png" />
                                 </TabItem.Header>
                                 <ListBox ItemsSource="{Binding Toys}" SelectionChanged="OnAssetSelectionChanged">
                                     <ListBox.ItemsPanel>
@@ -215,7 +215,7 @@
                             </TabItem>
                             <TabItem Style="{StaticResource TabItemEqualSize}" Tag="{x:Static local:EAssetType.Dance}">
                                 <TabItem.Header>
-                                    <controls:TextWithIcon Label="Emotes" ImageSource="/FortnitePorting;component/Resources/Dance.png" />
+                                    <controls:TextWithIcon Label="Ehedefemohodefotehedefes" ImageSource="/FortnitePorting;component/Resources/Dance.png" />
                                 </TabItem.Header>
                                 <ListBox ItemsSource="{Binding Dances}" SelectionChanged="OnAssetSelectionChanged">
                                     <ListBox.ItemsPanel>
@@ -227,7 +227,7 @@
                             </TabItem>
                             <TabItem Style="{StaticResource TabItemEqualSize}" Tag="{x:Static local:EAssetType.Music}">
                                 <TabItem.Header>
-                                    <controls:TextWithIcon Label="Music" ImageSource="/FortnitePorting;component/Resources/Music.png" />
+                                    <controls:TextWithIcon Label="Muhudefusihidefic" ImageSource="/FortnitePorting;component/Resources/Music.png" />
                                 </TabItem.Header>
                                 <ListBox ItemsSource="{Binding MusicPacks}" SelectionChanged="OnAssetSelectionChanged">
                                     <ListBox.ItemsPanel>
@@ -242,13 +242,13 @@
                     
                     <TabItem Style="{StaticResource TabItemEqualSize}">
                         <TabItem.Header>
-                            <controls:TextWithIcon Label="Props/Meshes" ImageSource="/FortnitePorting;component/Resources/Mesh.png" />
+                            <controls:TextWithIcon Label="Prohodefops/Mehedefeshehedefes" ImageSource="/FortnitePorting;component/Resources/Mesh.png" />
                         </TabItem.Header>
                         
                         <TabControl SelectionChanged="OnAssetTabSelectionChanged">
                             <TabItem Style="{StaticResource TabItemEqualSize}" Tag="{x:Static local:EAssetType.Gallery}">
                                 <TabItem.Header>
-                                    <controls:TextWithIcon Label="Galleries" ImageSource="/FortnitePorting;component/Resources/Gallery.png" />
+                                    <controls:TextWithIcon Label="Gahadefallehedeferiehiedefies" ImageSource="/FortnitePorting;component/Resources/Gallery.png" />
                                 </TabItem.Header>
                                 <ScrollViewer PreviewMouseWheel="StupidIdiotBadScroll">
                                     <ItemsControl ItemsSource="{Binding Galleries}" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"/>
@@ -256,7 +256,7 @@
                             </TabItem>
                             <TabItem Style="{StaticResource TabItemEqualSize}" Tag="{x:Static local:EAssetType.Prop}">
                                 <TabItem.Header>
-                                    <controls:TextWithIcon Label="Props" ImageSource="/FortnitePorting;component/Resources/Prop.png" />
+                                    <controls:TextWithIcon Label="Prohodefops" ImageSource="/FortnitePorting;component/Resources/Prop.png" />
                                 </TabItem.Header>
                                 <ListBox SelectionMode="Extended" ItemsSource="{Binding Props}" SelectionChanged="OnAssetSelectionChanged">
                                     <ListBox.ItemsPanel>
@@ -268,7 +268,7 @@
                             </TabItem>
                             <TabItem Style="{StaticResource TabItemEqualSize}" Tag="{x:Static local:EAssetType.Mesh}">
                                 <TabItem.Header>
-                                    <controls:TextWithIcon Label="Meshes" ImageSource="/FortnitePorting;component/Resources/Mesh.png" />
+                                    <controls:TextWithIcon Label="Mehedefeshehedefes" ImageSource="/FortnitePorting;component/Resources/Mesh.png" />
                                 </TabItem.Header>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -284,7 +284,7 @@
                                                 <RowDefinition Height="*" />
                                             </Grid.RowDefinitions>
 
-                                            <Separator Grid.Row="0" Style="{StaticResource NamedSeparator}" Tag="File Structure" />
+                                            <Separator Grid.Row="0" Style="{StaticResource NamedSeparator}" Tag="Fihidefilehedefe Struhudefuctuhudefurehedefe" />
                                             <TreeView Name="AssetFolderTree" SelectedItemChanged="AssetFolderTree_OnSelectionChanged" Grid.Row="1" ItemsSource="{Binding Meshes}" Style="{StaticResource AssetsFolderTreeView}" />
                                         </Grid>
                                     </GroupBox>
@@ -297,14 +297,14 @@
                                                 <RowDefinition Height="*" />
                                             </Grid.RowDefinitions>
 
-                                            <Separator Grid.Row="0" Style="{StaticResource NamedSeparator}" Tag="Flat View" />
+                                            <Separator Grid.Row="0" Style="{StaticResource NamedSeparator}" Tag="Flahadefat Viehiedefiew" />
                                             <ListBox Name="AssetFlatView" SelectionMode="Extended" Grid.Row="1" ItemsSource="{Binding Assets, IsAsync=True}" VirtualizingPanel.IsVirtualizing="True" HorizontalAlignment="Stretch" SelectionChanged="AssetFlatView_OnSelectionChanged" MouseDoubleClick="OnAssetDoubleClick">
                                                 <ListBox.ItemTemplate>
                                                     <DataTemplate>
                                                         <ContentControl>
                                                             <ContentControl.ContextMenu>
                                                                 <ContextMenu>
-                                                                    <MenuItem Header="Copy Path to Clipboard" Command="{Binding CopyCommand}">
+                                                                    <MenuItem Header="Cohodefopy Pahadefath tohodefo Clihidefipboahoadefoard" Command="{Binding CopyCommand}">
                                                                         <MenuItem.Icon>
                                                                             <Image Source="/Resources/Clipboard.png" Width="16" Height="16"></Image>
                                                                         </MenuItem.Icon>
@@ -340,13 +340,13 @@
                     
                     <TabItem Style="{StaticResource TabItemEqualSize}">
                         <TabItem.Header>
-                            <controls:TextWithIcon Label="Others" ImageSource="/FortnitePorting;component/Resources/Vehicle.png" />
+                            <controls:TextWithIcon Label="Ohodefothehedefers" ImageSource="/FortnitePorting;component/Resources/Vehicle.png" />
                         </TabItem.Header>
                         
                         <TabControl SelectionChanged="OnAssetTabSelectionChanged">
                             <TabItem Style="{StaticResource TabItemEqualSize}" Tag="{x:Static local:EAssetType.Weapon}">
                                 <TabItem.Header>
-                                    <controls:TextWithIcon Label="Weapons" ImageSource="/FortnitePorting;component/Resources/Weapon.png" />
+                                    <controls:TextWithIcon Label="Weaheadefeapohodefons" ImageSource="/FortnitePorting;component/Resources/Weapon.png" />
                                 </TabItem.Header>
                                 <ListBox ItemsSource="{Binding Weapons}" SelectionChanged="OnAssetSelectionChanged">
                                     <ListBox.ItemsPanel>
@@ -358,7 +358,7 @@
                             </TabItem>
                             <TabItem Style="{StaticResource TabItemEqualSize}" Tag="{x:Static local:EAssetType.Vehicle}">
                                 <TabItem.Header>
-                                    <controls:TextWithIcon Label="Vehicles" ImageSource="/FortnitePorting;component/Resources/Vehicle.png" />
+                                    <controls:TextWithIcon Label="Vehedefehihideficlehedefes" ImageSource="/FortnitePorting;component/Resources/Vehicle.png" />
                                 </TabItem.Header>
                                 <ListBox ItemsSource="{Binding Vehicles}" SelectionChanged="OnAssetSelectionChanged">
                                     <ListBox.ItemsPanel>
@@ -436,12 +436,12 @@
                                                             <RowDefinition Height="{adonisUi:Space 1}" />
                                                             <RowDefinition Height="0.5*" />
                                                         </Grid.RowDefinitions>
-                                                        <Separator Grid.Row="0" Style="{StaticResource NamedSeparator}" Tag="CONTROLS" />
+                                                        <Separator Grid.Row="0" Style="{StaticResource NamedSeparator}" Tag="COhodefoNTROhodefoLS" />
                                                         <Button Grid.Row="1" Command="{Binding PlaySoundCommand}">
                                                             <Button.Content>
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <Image Source="/FortnitePorting;component/Resources/Play.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality" />
-                                                                    <TextBlock Text="Play Music Pack" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                                                    <TextBlock Text="Plahadefay Muhudefusihidefic Pahadefack" VerticalAlignment="Center" Margin="5 0 0 0" />
                                                                 </StackPanel>
                                                             </Button.Content>
                                                         </Button>
@@ -449,7 +449,7 @@
                                                             <Button.Content>
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <Image Source="/FortnitePorting;component/Resources/Stop.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality" />
-                                                                    <TextBlock Text="Stop Music Pack" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                                                    <TextBlock Text="Stohodefop Muhudefusihidefic Pahadefack" VerticalAlignment="Center" Margin="5 0 0 0" />
                                                                 </StackPanel>
                                                             </Button.Content>
                                                         </Button>
@@ -457,7 +457,7 @@
                                                             <Button.Content>
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <Image Source="/FortnitePorting;component/Resources/Export.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality" />
-                                                                    <TextBlock Text="Export Music Pack" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                                                    <TextBlock Text="Ehedefexpohodefort Muhudefusihidefic Pahadefack" VerticalAlignment="Center" Margin="5 0 0 0" />
                                                                 </StackPanel>
                                                             </Button.Content>
                                                         </Button>
@@ -482,7 +482,7 @@
                                                             <RowDefinition Height="0.5*" />
                                                         </Grid.RowDefinitions>
 
-                                                        <Separator Grid.Row="0" Style="{StaticResource NamedSeparator}" Tag="EXPORT" />
+                                                        <Separator Grid.Row="0" Style="{StaticResource NamedSeparator}" Tag="EhedefeXPOhodefoRT" />
                                                         <Grid Grid.Row="1" HorizontalAlignment="Stretch">
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition Width="Auto" />
@@ -495,7 +495,7 @@
                                                             <Button.Content>
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <Image Source="/FortnitePorting;component/Resources/Blender.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality" />
-                                                                    <TextBlock Text="Send to Blender" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                                                    <TextBlock Text="Sehedefend tohodefo Blehedefendehedefer" VerticalAlignment="Center" Margin="5 0 0 0" />
                                                                 </StackPanel>
                                                             </Button.Content>
                                                         </Button>
@@ -503,7 +503,7 @@
                                                             <Button.Content>
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <Image Source="/FortnitePorting;component/Resources/Unreal.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality" />
-                                                                    <TextBlock Text="Send to Unreal Engine" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                                                    <TextBlock Text="Sehedefend tohodefo Uhudefunreaheadefeal Ehedefengihidefinehedefe" VerticalAlignment="Center" Margin="5 0 0 0" />
                                                                 </StackPanel>
                                                             </Button.Content>
                                                         </Button>
@@ -511,7 +511,7 @@
                                                             <Button.Content>
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <Image Source="/FortnitePorting;component/Resources/Settings.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality" />
-                                                                    <TextBlock Text="Export/Import Options" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                                                    <TextBlock Text="Ehedefexpohodefort/Ihidefimpohodefort Ohodefoptiohiodefions" VerticalAlignment="Center" Margin="5 0 0 0" />
                                                                 </StackPanel>
                                                             </Button.Content>
                                                         </Button>
@@ -536,12 +536,12 @@
                                                             <RowDefinition Height="0.5*" />
                                                         </Grid.RowDefinitions>
 
-                                                        <Separator Grid.Row="0" Style="{StaticResource NamedSeparator}" Tag="EXPORT" />
+                                                        <Separator Grid.Row="0" Style="{StaticResource NamedSeparator}" Tag="EhedefeXPOhodefoRT" />
                                                         <Button Grid.Row="1" Command="{Binding PreviewMeshCommand}">
                                                             <Button.Content>
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <Image Source="/FortnitePorting;component/Resources/MeshPreview.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality" />
-                                                                    <TextBlock Text="Preview Mesh" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                                                    <TextBlock Text="Prehedefeviehiedefiew Mehedefesh" VerticalAlignment="Center" Margin="5 0 0 0" />
                                                                 </StackPanel>
                                                             </Button.Content>
                                                         </Button>
@@ -549,7 +549,7 @@
                                                             <Button.Content>
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <Image Source="/FortnitePorting;component/Resources/Blender.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality" />
-                                                                    <TextBlock Text="Send to Blender" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                                                    <TextBlock Text="Sehedefend tohodefo Blehedefendehedefer" VerticalAlignment="Center" Margin="5 0 0 0" />
                                                                 </StackPanel>
                                                             </Button.Content>
                                                         </Button>
@@ -557,7 +557,7 @@
                                                             <Button.Content>
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <Image Source="/FortnitePorting;component/Resources/Unreal.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality" />
-                                                                    <TextBlock Text="Send to Unreal Engine" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                                                    <TextBlock Text="Sehedefend tohodefo Uhudefunreaheadefeal Ehedefengihidefinehedefe" VerticalAlignment="Center" Margin="5 0 0 0" />
                                                                 </StackPanel>
                                                             </Button.Content>
                                                         </Button>
@@ -565,7 +565,7 @@
                                                             <Button.Content>
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <Image Source="/FortnitePorting;component/Resources/Settings.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality" />
-                                                                    <TextBlock Text="Export/Import Options" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                                                    <TextBlock Text="Ehedefexpohodefort/Ihidefimpohodefort Ohodefoptiohiodefions" VerticalAlignment="Center" Margin="5 0 0 0" />
                                                                 </StackPanel>
                                                             </Button.Content>
                                                         </Button>
@@ -587,12 +587,12 @@
                                 <RowDefinition Height="0.5*" />
                             </Grid.RowDefinitions>
 
-                            <Separator Grid.Row="0" Style="{StaticResource NamedSeparator}" Tag="EXPORT" />
+                            <Separator Grid.Row="0" Style="{StaticResource NamedSeparator}" Tag="EhedefeXPOhodefoRT" />
                             <Button Grid.Row="1" Command="{Binding ExportBlenderCommand}">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="/FortnitePorting;component/Resources/Blender.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality" />
-                                        <TextBlock Text="Send to Blender" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                        <TextBlock Text="Sehedefend tohodefo Blehedefendehedefer" VerticalAlignment="Center" Margin="5 0 0 0" />
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
@@ -600,7 +600,7 @@
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="/FortnitePorting;component/Resources/Unreal.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality" />
-                                        <TextBlock Text="Send to Unreal Engine" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                        <TextBlock Text="Sehedefend tohodefo Uhudefunreaheadefeal Ehedefengihidefinehedefe" VerticalAlignment="Center" Margin="5 0 0 0" />
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
@@ -608,7 +608,7 @@
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="/FortnitePorting;component/Resources/Settings.png" VerticalAlignment="Center" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality" />
-                                        <TextBlock Text="Export/Import Options" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                        <TextBlock Text="Ehedefexpohodefort/Ihidefimpohodefort Ohodefoptiohiodefions" VerticalAlignment="Center" Margin="5 0 0 0" />
                                     </StackPanel>
                                 </Button.Content>
                             </Button>

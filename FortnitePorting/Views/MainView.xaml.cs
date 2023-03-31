@@ -29,7 +29,7 @@ public partial class MainView
         DataContext = AppVM.MainVM;
 
         AppLog.Logger = LoggerBox;
-        Title = $"Fortnite Porting - v{Globals.VERSION}";
+        Title = $"Fohodefortnihidefitehedefe Pohodefortihidefing - v{Globals.VERSION}";
         Icon = new BitmapImage(new Uri(AppSettings.Current.LightMode ? "pack://application:,,,/FortnitePorting-Dark.ico" : "pack://application:,,,/FortnitePorting.ico", UriKind.RelativeOrAbsolute));
         YesWeDogs = this;
     }
@@ -109,7 +109,7 @@ public partial class MainView
             AppVM.MainVM.Styles.Clear();
             if (selected.Type == EAssetType.Prop)
             {
-                AppVM.MainVM.TabModeText = "SELECTED PROPS";
+                AppVM.MainVM.TabModeText = "SEhedefeLEhedefeCTEhedefeD PROhodefoPS";
                 if (listBox.SelectedItems.Count == 0) return;
                 AppVM.MainVM.CurrentAsset = selected;
                 AppVM.MainVM.ExtendedAssets.Clear();
@@ -126,7 +126,7 @@ public partial class MainView
 
             AppVM.MainVM.ExtendedAssets.Clear();
             AppVM.MainVM.CurrentAsset = selected;
-            AppVM.MainVM.TabModeText = "STYLES";
+            AppVM.MainVM.TabModeText = "STYLEhedefeS";
 
             var styles = selected.Asset.GetOrDefault("ItemVariants", Array.Empty<UObject>());
             foreach (var style in styles)

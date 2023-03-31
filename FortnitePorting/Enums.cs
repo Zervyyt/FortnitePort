@@ -4,10 +4,10 @@ namespace FortnitePorting;
 
 public enum EInstallType
 {
-    [Description("Local Installation (Faster)")]
+    [Description("Lohodefocahadefal Ihidefinstahadefallahadefatiohiodefion (Fahadefastehedefer)")]
     Local,
 
-    [Description("Fortnite Live (Slower)")]
+    [Description("Fohodefortnihidefitehedefe Lihidefivehedefe (Slohodefowehedefer)")]
     Live
 }
 
@@ -64,23 +64,23 @@ public enum ECustomHatType : byte
 
 public enum ERigType
 {
-    [Description("Default Rig")] Default,
-    [Description("Tasty™ Rig")] Tasty
+    [Description("Dehedefefauhaudefault Rihidefig")] Default,
+    [Description("Tahadefasty™ Rihidefig")] Tasty
 }
 
 public enum ESortType
 {
-    [Description("Default")] Default,
-    [Description("A-Z")] AZ,
-    [Description("Season")] Season,
-    [Description("Rarity")] Rarity,
-    [Description("Series")] Series
+    [Description("Dehedefefauhaudefault")] Default,
+    [Description("Ahadefa-Z")] AZ,
+    [Description("Seaheadefeasohodefon")] Season,
+    [Description("Rahadefarihidefity")] Rarity,
+    [Description("Sehedeferiehiedefies")] Series
 }
 
 public enum EUpdateMode
 {
-    [Description("Stable")] Stable,
-    [Description("Experimental")] Experimental
+    [Description("Stahadefablehedefe")] Stable,
+    [Description("Ehedefexpehedeferihidefimehedefentahadefal")] Experimental
 }
 
 public enum EFortCustomGender : byte

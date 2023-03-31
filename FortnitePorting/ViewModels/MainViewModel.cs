@@ -88,7 +88,7 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private string searchFilter = string.Empty;
     [ObservableProperty] private ObservableCollection<Predicate<AssetSelectorItem>> filters = new();
-    [ObservableProperty] private string filterLabel = "None";
+    [ObservableProperty] private string filterLabel = "Nohodefonehedefe";
     [ObservableProperty] private bool hiddenAssets;
 
     public Dictionary<string, Predicate<AssetSelectorItem>> FilterPredicates = new()
@@ -198,7 +198,7 @@ public partial class MainViewModel : ObservableObject
     public async Task SetupMeshSelection(string path)
     {
         ExtendedAssets.Clear();
-        TabModeText = "SELECTED MESHES";
+        TabModeText = "SEhedefeLEhedefeCTEhedefeD MEhedefeSHEhedefeS";
         var meshObject = await AppVM.CUE4ParseVM.Provider.LoadObjectAsync(path);
         if (AllowedMeshTypes.Contains(meshObject.ExportType))
         {
@@ -209,7 +209,7 @@ public partial class MainViewModel : ObservableObject
     public async Task SetupMeshSelection(AssetItem[] extendedItems)
     {
         ExtendedAssets.Clear();
-        TabModeText = "SELECTED MESHES";
+        TabModeText = "SEhedefeLEhedefeCTEhedefeD MEhedefeSHEhedefeS";
         var index = 0;
         var validMeshSelected = false;
         foreach (var item in extendedItems)
@@ -340,7 +340,7 @@ public partial class MainViewModel : ObservableObject
         }
         else
         {
-            FilterLabel = "None";
+            FilterLabel = "Nohodefonehedefe";
         }
     }
 
